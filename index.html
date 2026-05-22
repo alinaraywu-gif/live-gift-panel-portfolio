@@ -5481,14 +5481,6 @@
       font-size: 15px;
     }
 
-    .ux-deck ~ .project-brief,
-    .ux-deck ~ .outcome-first,
-    .ux-deck ~ .toc,
-    .ux-deck ~ .slide,
-    .ux-deck ~ .footer {
-      display: none !important;
-    }
-
     /* ═══════════════════════════════════════════════════════
        PORTFOLIO DECK — Minimal 1920×1080 master
        70% black space · 20% white modules · 10% pink accent
@@ -5504,15 +5496,6 @@
       position: relative;
       background: var(--deck-bg);
       color: var(--deck-text);
-    }
-
-    .ppt-deck ~ .ux-deck,
-    .ppt-deck ~ .project-brief,
-    .ppt-deck ~ .outcome-first,
-    .ppt-deck ~ .toc,
-    .ppt-deck ~ .slide,
-    .ppt-deck ~ .footer {
-      display: none !important;
     }
 
     /* — Slide container: max-width 1400, normal flow — */
@@ -5907,11 +5890,11 @@
         linear-gradient(90deg, rgba(255, 63, 143, 0.12), rgba(255, 255, 255, 0.025), rgba(255, 63, 143, 0.1)),
         rgba(5, 5, 8, 0.9);
       font-family: var(--font-cn);
-      font-size: clamp(16px, 1.4vw, 22px);
+      font-size: clamp(14px, 1.3vw, 20px);
       line-height: 1.4;
       font-weight: 500;
       text-align: center;
-      text-wrap: balance;
+      white-space: nowrap;
     }
 
     .ppt-bottom-quote::before {
@@ -7058,18 +7041,29 @@
 
     .topbar {
       top: 24px;
-      max-width: none;
+      max-width: calc(100vw - 48px);
       padding: 8px 12px;
       border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 36px;
       background: rgba(8, 9, 18, 0.82);
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+      overflow: hidden;
+    }
+
+    .pill-nav-items {
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .pill-nav-items::-webkit-scrollbar {
+      display: none;
     }
 
     .pill {
-      min-width: 96px;
-      padding: 12px 18px;
-      font-size: 14px;
+      min-width: 0;
+      padding: 10px 14px;
+      font-size: 13px;
       white-space: nowrap;
     }
 
@@ -8255,6 +8249,17 @@
       display: grid;
       gap: clamp(28px, 3cqw, 42px);
       margin-top: clamp(16px, 2cqw, 28px);
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .ppt-research-block {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
     }
 
     .ppt-section-kicker {
@@ -8263,14 +8268,23 @@
     }
 
     .ppt-capability-strip {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: clamp(16px, 2cqw, 28px);
+      display: flex;
+      justify-content: space-between;
+      gap: clamp(10px, 1.2cqw, 18px);
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow: visible;
+    }
+
+    .ppt-capability-strip .ppt-capability-card {
+      flex: 0 1 clamp(132px, 17.8cqw, 206px);
+      min-width: 0;
     }
 
     .ppt-capability-card {
       min-height: 0 !important;
-      padding: clamp(20px, 2cqw, 32px) !important;
+      padding: clamp(12px, 1.2cqw, 18px) clamp(10px, 1.2cqw, 16px) !important;
       border: 0 !important;
       background: transparent !important;
       box-shadow: none !important;
@@ -8285,7 +8299,7 @@
       display: block;
       margin-bottom: clamp(10px, 1.2cqw, 16px);
       color: var(--deck-pink);
-      font-size: clamp(28px, 3cqw, 42px);
+      font-size: clamp(26px, 2.7cqw, 38px);
       font-weight: 900;
       line-height: 1;
     }
@@ -8293,7 +8307,7 @@
     .ppt-capability-card h3 {
       max-width: 100%;
       margin: 0 0 10px;
-      font-size: clamp(20px, 1.8cqw, 26px);
+      font-size: clamp(16px, 1.55cqw, 22px);
       line-height: 1.22;
       text-align: left;
     }
@@ -8384,6 +8398,282 @@
       white-space: nowrap;
     }
 
+    .ppt-action-bundle-board {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-top: 0;
+      align-items: stretch;
+    }
+
+    .ppt-action-journey {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) 28px minmax(0, 1fr);
+      gap: clamp(14px, 1.7cqw, 24px);
+      align-items: center;
+      margin-top: clamp(26px, 2.8cqw, 40px);
+      padding-bottom: clamp(28px, 3cqw, 44px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ppt-action-journey span {
+      min-width: 0;
+      display: grid;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: clamp(13px, 1.05cqw, 16px);
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .ppt-action-journey b {
+      color: var(--deck-pink);
+      font-family: var(--font-en);
+      font-size: clamp(13px, 1.05cqw, 15px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .ppt-action-journey i {
+      justify-self: center;
+      color: var(--deck-pink);
+      font-size: 22px;
+      line-height: 1;
+      font-style: normal;
+      font-weight: 900;
+    }
+
+    .ppt-action-bundle {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: clamp(20px, 2.4cqw, 34px);
+      align-items: start;
+      padding: clamp(30px, 3cqw, 46px) 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .ppt-action-bundle:last-child {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ppt-action-bundle-head {
+      display: grid;
+      min-height: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .ppt-action-bundle-head span {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--deck-pink);
+      font-size: clamp(12px, 0.92cqw, 14px);
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .ppt-action-bundle-head h3 {
+      max-width: 900px;
+      margin: 0;
+      color: #fff;
+      font-size: clamp(26px, 2.05cqw, 34px);
+      line-height: 1.12;
+      font-weight: 950;
+    }
+
+    .ppt-action-bundle-head p {
+      max-width: 860px;
+      margin: 12px 0 0;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: clamp(13px, 1.02cqw, 15px);
+      line-height: 1.58;
+    }
+
+    .ppt-action-visuals {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(24px, 2.8cqw, 42px);
+      width: 100%;
+      margin-top: clamp(24px, 2.6cqw, 38px);
+      align-items: start;
+    }
+
+    .ppt-action-visual-pair {
+      min-width: 0;
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .ppt-action-visual-pair:nth-child(3):last-child {
+      grid-column: 1 / -1;
+      width: min(100%, 620px);
+      justify-self: center;
+    }
+
+    .ppt-action-visual-title {
+      margin: 0 !important;
+      color: rgba(255, 255, 255, 0.86) !important;
+      font-size: 12px !important;
+      line-height: 1 !important;
+      font-weight: 900 !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase;
+    }
+
+    .ppt-action-shot-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+      gap: clamp(14px, 1.5cqw, 22px);
+      align-items: center;
+      justify-content: stretch;
+    }
+
+    .ppt-action-visuals figure {
+      position: relative;
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      aspect-ratio: 750 / 1624;
+      width: 100%;
+      max-width: clamp(210px, 17cqw, 248px);
+      justify-self: center;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.09),
+        0 22px 46px rgba(0, 0, 0, 0.3);
+    }
+
+    .ppt-action-shot-row > i {
+      justify-self: center;
+      color: var(--deck-pink);
+      font-size: 22px;
+      line-height: 1;
+      font-style: normal;
+      font-weight: 900;
+    }
+
+    .ppt-action-visuals img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .ppt-action-visuals figure::before {
+      content: attr(data-state);
+      position: absolute;
+      z-index: 2;
+      top: 7px;
+      left: 7px;
+      padding: 5px 8px;
+      border-radius: 999px;
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(0, 0, 0, 0.62);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .ppt-action-visuals figure.after::before {
+      color: #fff;
+      background: rgba(255, 45, 132, 0.82);
+    }
+
+    .ppt-action-visuals figcaption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 22px 8px 8px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 11px;
+      line-height: 1.2;
+      font-weight: 900;
+      text-align: center;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.82), transparent);
+    }
+
+    .ppt-action-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      align-content: start;
+      gap: clamp(18px, 2cqw, 28px);
+      padding-top: clamp(18px, 2cqw, 28px);
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .ppt-action-ba {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr);
+      column-gap: clamp(10px, 1.1cqw, 14px);
+      row-gap: 8px;
+      padding: 0;
+      border-bottom: 0;
+    }
+
+    .ppt-action-ba:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .ppt-action-ba h4 {
+      grid-column: 1 / -1;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.94);
+      font-size: clamp(17px, 1.28cqw, 21px);
+      line-height: 1.28;
+      font-weight: 900;
+    }
+
+    .ppt-action-ba div {
+      min-width: 0;
+      display: grid;
+      gap: 6px;
+      align-content: start;
+    }
+
+    .ppt-action-ba b {
+      color: rgba(255, 255, 255, 0.36);
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .ppt-action-ba span {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: clamp(12px, 0.96cqw, 14px);
+      line-height: 1.55;
+    }
+
+    .ppt-action-ba em {
+      align-self: center;
+      justify-self: center;
+      color: var(--deck-pink);
+      font-size: 22px;
+      line-height: 1;
+      font-style: normal;
+      font-weight: 900;
+    }
+
     .ppt-strategy-map .ppt-card,
     .ppt-system-flow .ppt-card,
     .ppt-system-rules,
@@ -8399,6 +8689,11 @@
     .ppt-comp-scroll-wrap {
       position: relative;
       margin: clamp(16px, 1.8cqw, 24px) 0;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      isolation: isolate;
     }
 
     .ppt-comp-scroll-wrap::before,
@@ -8407,30 +8702,40 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 80px;
-      z-index: 2;
+      width: clamp(86px, 8cqw, 132px);
+      z-index: 4;
       pointer-events: none;
     }
 
     .ppt-comp-scroll-wrap::before {
       left: 0;
-      background: linear-gradient(to right, var(--deck-bg), transparent);
+      background: linear-gradient(to right, rgba(5, 5, 7, 0.98) 0%, rgba(5, 5, 7, 0.76) 42%, rgba(5, 5, 7, 0) 100%);
     }
 
     .ppt-comp-scroll-wrap::after {
       right: 0;
-      background: linear-gradient(to left, var(--deck-bg), transparent);
+      background: linear-gradient(to left, rgba(5, 5, 7, 0.98) 0%, rgba(5, 5, 7, 0.76) 42%, rgba(5, 5, 7, 0) 100%);
     }
 
     .ppt-comp-scroll {
       display: flex;
       gap: clamp(14px, 1.6cqw, 20px);
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
       overflow-x: auto;
-      padding: 8px 0;
+      padding: 8px clamp(74px, 7cqw, 116px);
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-x: contain;
-      scroll-snap-type: x proximity;
+      scroll-snap-type: none;
+      cursor: grab;
+      user-select: none;
+      touch-action: pan-y pan-x;
+    }
+
+    .ppt-comp-scroll.is-dragging {
+      cursor: grabbing;
     }
 
     .ppt-comp-scroll::-webkit-scrollbar {
@@ -8457,6 +8762,8 @@
       object-fit: cover;
       border-radius: 10px;
       transition: transform 0.28s ease, filter 0.28s ease, box-shadow 0.28s ease;
+      -webkit-user-drag: none;
+      user-drag: none;
     }
 
     .ppt-comp-thumb figcaption {
@@ -8518,6 +8825,7 @@
       object-fit: contain;
       flex-shrink: 0;
     }
+
 
     #research .ppt-compare-board {
       grid-template-columns: 1fr !important;
@@ -8601,7 +8909,8 @@
     .ppt-persona-card,
     .ppt-table-row,
     .ppt-capability-card,
-    .ppt-compare-note {
+    .ppt-compare-note,
+    .ppt-action-bundle {
       position: relative;
       border-radius: 8px;
       transition:
@@ -8613,6 +8922,14 @@
 
     .ppt-capability-card {
       margin: 0;
+    }
+
+    .ppt-action-bundle {
+      border-radius: 24px;
+    }
+
+    #overview .ppt-action-bundle {
+      border-radius: 0;
     }
 
     .ppt-state-card:hover,
@@ -8627,11 +8944,18 @@
     .ppt-persona-card:hover,
     .ppt-table-row:hover,
     .ppt-capability-card:hover,
-    .ppt-compare-note:hover {
+    .ppt-compare-note:hover,
+    .ppt-action-bundle:hover {
       transform: translateY(-3px);
       background: rgba(255, 255, 255, 0.085) !important;
       box-shadow:
         0 18px 46px rgba(0, 0, 0, 0.22) !important;
+    }
+
+    #overview .ppt-action-bundle:hover {
+      transform: none;
+      background: transparent !important;
+      box-shadow: none !important;
     }
 
     .ppt-action-row.head:hover {
@@ -8652,7 +8976,8 @@
     .ppt-persona-card:hover h3,
     .ppt-table-row:hover span:first-child,
     .ppt-capability-card:hover h3,
-    .ppt-compare-note:hover h3 {
+    .ppt-compare-note:hover h3,
+    .ppt-action-bundle:hover h3 {
       color: #fff !important;
     }
 
@@ -9516,13 +9841,39 @@
       .ppt-first-explore-head,
       .ppt-first-explore-groups,
       .ppt-returning-head,
-      .ppt-returning-canvas {
+      .ppt-returning-canvas,
+      .ppt-action-bundle-board {
         grid-template-columns: 1fr;
+      }
+
+      .ppt-action-bundle {
+        grid-template-columns: 1fr;
+      }
+
+      .ppt-action-journey {
+        grid-template-columns: 1fr;
+      }
+
+      .ppt-action-journey i {
+        transform: rotate(90deg);
+      }
+
+      .ppt-action-visuals {
+        grid-template-columns: 1fr;
+      }
+
+      .ppt-action-visual-pair:nth-child(3):last-child {
+        grid-column: auto;
+        width: 100%;
       }
 
       .ppt-first-main-shot .ppt-phone,
       .ppt-first-step-visual {
         width: min(100%, 300px);
+      }
+
+      .ppt-action-bundle-head {
+        min-height: 0;
       }
     }
 
@@ -9599,7 +9950,7 @@
         <div class="ppt-content">
           <div class="ppt-head">
             <h2 class="ppt-title small"><span class="pink">题目拆解</span> <small>/ Brief Analysis</small></h2>
-            <p class="ppt-lead">先拆解笔试题要求，明确设计边界与评判标准，再选择切入方向。</p>
+            <p class="ppt-lead">题目要求选择一个送礼相关功能做体验优化，本方案选取礼物面板里的推荐区域作为切入点。</p>
           </div>
           <div class="ppt-brief-block">
             <div class="ppt-card" style="padding:24px 28px; margin-bottom:20px;">
@@ -9608,16 +9959,16 @@
               <p style="opacity:.5; font-size:13px; margin-top:8px;">* 能消费「抖音钻石」的功能都算。e.g. 加入粉丝团、为主播的展馆送礼</p>
             </div>
             <div class="ppt-grid three" style="margin-bottom:24px;">
-              <article class="ppt-card"><span class="num">01</span><h3>选哪个功能</h3><p>礼物面板推荐区——覆盖用户最多，离付费最近。</p></article>
-              <article class="ppt-card"><span class="num">02</span><h3>提升什么</h3><p>首屏转化率 + 决策效率，用推荐策略降低选择成本。</p></article>
-              <article class="ppt-card"><span class="num">03</span><h3>交付标准</h3><p>完整分析 → 完整流程 → 高保真视觉 → 落地+发散。</p></article>
+              <article class="ppt-card"><span class="num">01</span><h3>优化对象</h3><p>礼物面板「推荐」区域，也就是打开面板后的推荐 Tab 首屏。</p></article>
+              <article class="ppt-card"><span class="num">02</span><h3>优化方向</h3><p>让推荐区在陈列礼物的基础上，补充送礼理由和下一步动作。</p></article>
+              <article class="ppt-card"><span class="num">03</span><h3>设计边界</h3><p>沿用现有面板和支付链路，聚焦推荐区首屏内容组织。</p></article>
             </div>
             <div class="ppt-card" style="padding:24px 28px;">
               <p style="opacity:.5; font-size:12px; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">我的切入角度 / My Approach</p>
-              <p style="font-size:15px; line-height:1.8;">以新客视角体验，推荐区首屏缺少明确的送礼引导和决策理由。切入点：<span class="pink">按用户实时状态做分层推荐</span>，让首屏主动给出当下最该送什么、为什么送。</p>
+	              <p style="font-size:15px; line-height:1.8;">这里的“推荐”指礼物面板里的推荐区域。切入点：<span class="pink">优化推荐区的首屏展示逻辑</span>，让它根据用户状态给出当下最该送什么、为什么送。</p>
             </div>
           </div>
-          <div class="ppt-bottom-quote">选题逻辑：范围最广的触点 × 离付费最近的位置 × 当前体验的明确短板。</div>
+	          <div class="ppt-bottom-quote">选题逻辑：礼物面板是付费入口，推荐区是面板首屏，适合承担送礼决策承接。</div>
         </div>
       </section>
 
@@ -9628,7 +9979,7 @@
         <div class="ppt-content">
           <div class="ppt-head">
             <h2 class="ppt-title small"><span class="pink">项目背景</span> <small>/ Background</small></h2>
-            <p class="ppt-lead">推荐 Tab 首屏是送礼决策的第一屏，目前缺少针对不同用户状态的差异化引导。</p>
+            <p class="ppt-lead">推荐 Tab 首屏是送礼决策的第一屏，目前面向不同用户状态的承接方式仍然比较统一。</p>
           </div>
           <div class="ppt-grid three">
             <article class="ppt-card"><span class="num">01</span><h3>场景价值</h3><p>用户产生喜欢和陪伴感后，送礼是最直接的低压力表达方式。</p></article>
@@ -9667,6 +10018,10 @@
                   <figure class="ppt-comp-thumb"><img src="assets/status-gift-feedback.png" alt="送礼反馈"><figcaption>送后反馈</figcaption></figure>
                   <figure class="ppt-comp-thumb"><img src="assets/status-wish.png" alt="主播心愿"><figcaption>主播心愿</figcaption></figure>
                   <figure class="ppt-comp-thumb"><img src="assets/status-wish-no-link.png" alt="心愿无关联"><figcaption>面板内无关联</figcaption></figure>
+                  <figure class="ppt-comp-thumb"><img src="assets/status-gallery-tab.png" alt="展馆tab"><figcaption>展馆 Tab</figcaption></figure>
+                  <figure class="ppt-comp-thumb"><img src="assets/status-gallery-selected.png" alt="展馆选中"><figcaption>展馆选中态</figcaption></figure>
+                  <figure class="ppt-comp-thumb"><img src="assets/status-recommend-tab.png" alt="推荐tab"><figcaption>推荐 Tab</figcaption></figure>
+                  <figure class="ppt-comp-thumb"><img src="assets/status-fans-club-tab.png" alt="粉丝团tab"><figcaption>粉丝团 Tab</figcaption></figure>
                 </div>
               </div>
             </div>
@@ -9700,14 +10055,14 @@
                 <article class="ppt-card ppt-compare-note">
                   <span class="num">GAP</span>
                   <div class="ppt-compare-note-body">
-                    <h3>单点能力齐备，缺少按状态串联的推荐路径</h3>
+                    <h3>每个功能都有，但没人帮用户把它们串起来</h3>
                     <p>抖音已具备推荐、展馆、图鉴、活动等模块，但分散在多个tab中，用户需主动探索切换；竞品同样以品类货架为主。机会在于：将现有能力按用户送礼状态（围观→首送→复送→深度粉丝）重新组织，让面板主动匹配"当前该看什么"，减少选择负担。</p>
                   </div>
                 </article>
               </div>
             </div>
           </div>
-          <div class="ppt-bottom-quote">结论：各家单点能力已齐备，缺的是<span class="pink">按用户状态串联的推荐路径</span>。</div>
+          <div class="ppt-bottom-quote">结论：各家都有推荐、活动、粉丝团等模块，机会在于让系统根据用户当前状态主动推荐<span class="pink">现在该看什么</span>。</div>
         </div>
       </section>
 
@@ -9747,7 +10102,7 @@
             <div class="goal-north-star">
               <span class="goal-ns-label">North Star</span>
               <h3>更懂你的心意表达，让每一次送礼更合适</h3>
-              <p>把固定货架升级为按用户状态动态变化的推荐区，用分层策略连接"想送"与"送对"。</p>
+              <p>把推荐区首屏从固定货架展示，调整为按用户状态变化的送礼决策承接位。</p>
             </div>
             <div class="goal-cards">
               <div class="goal-card">
@@ -9796,8 +10151,8 @@
         <div class="ppt-top"><span><b>2026</b> PORTFOLIO</span><span>RULES</span></div>
         <div class="ppt-content">
           <div class="ppt-head">
-            <h2 class="ppt-title small">推荐区<span class="pink">动态展示规则</span> <small>/ Rules</small></h2>
-<p class="ppt-lead">上一页解决选品，这一页解决排序——首屏只突出一个最值得点击的推荐位。</p>
+            <h2 class="ppt-title small">推荐区<span class="pink">动态展示规则</span> <small>/ Display Rules</small></h2>
+<p class="ppt-lead">系统读取用户状态 → 判断优先级 → 输出一个最合适的首屏推荐。</p>
           </div>
           <div class="ppt-rule-board">
             <section class="ppt-rule-panel">
@@ -9812,18 +10167,18 @@
             </section>
             <section class="ppt-rule-panel">
               <span class="ppt-story-kicker">Priority</span>
-              <h3>按紧迫性排序，只突出一个首屏推荐</h3>
+              <h3>哪个状态优先级最高</h3>
               <div class="ppt-priority-list">
-                <article class="ppt-priority-item"><span class="num">01</span><div><h4>灯牌待点亮</h4><p>身份维护具有时效性，优先给到一键点亮。</p></div></article>
+                <article class="ppt-priority-item"><span class="num">01</span><div><h4>灯牌快灭了</h4><p>身份维护具有时效性，优先给到一键点亮。</p></div></article>
                 <article class="ppt-priority-item"><span class="num">02</span><div><h4>主播有心愿</h4><p>直播间存在明确目标，优先展示心愿礼物。</p></div></article>
-                <article class="ppt-priority-item"><span class="num">03</span><div><h4>新客未送过</h4><p>需要降低首次表达压力，优先展示破冰推荐。</p></div></article>
-                <article class="ppt-priority-item"><span class="num">04</span><div><h4>送过礼，未入团</h4><p>已有习惯基础，优先展示常送和一键复送。</p></div></article>
-                <article class="ppt-priority-item"><span class="num">05</span><div><h4>无特殊状态</h4><p>回到关系进度和常送礼物，维持长期支持。</p></div></article>
+                <article class="ppt-priority-item"><span class="num">03</span><div><h4>新客第一次进来还没送过</h4><p>需要降低首次表达压力，优先展示破冰推荐。</p></div></article>
+                <article class="ppt-priority-item"><span class="num">04</span><div><h4>送过但还没加入粉丝团</h4><p>已有习惯基础，优先展示常送和一键复送。</p></div></article>
+                <article class="ppt-priority-item"><span class="num">05</span><div><h4>老粉日常来看</h4><p>回到关系进度和常送礼物，维持长期支持。</p></div></article>
               </div>
             </section>
             <section class="ppt-rule-panel">
               <span class="ppt-story-kicker">Output</span>
-              <h3>推荐区生成首屏模块</h3>
+	              <h3>最终首屏展示什么</h3>
               <div class="ppt-output-list">
                 <article class="ppt-output-item"><b>一句送礼理由</b><p>解释此刻为什么推荐这份礼物。</p></article>
                 <article class="ppt-output-item"><b>一组匹配礼物</b><p>优先低压力、常送或目标相关礼物。</p></article>
@@ -9842,54 +10197,158 @@
         <div class="ppt-top"><span><b>2026</b> PORTFOLIO</span><span>STRATEGY TO ACTION</span></div>
         <div class="ppt-content">
           <div class="ppt-head">
-            <h2 class="ppt-title"><span class="pink">设计策略</span>与动作对应 <small>/ Actions</small></h2>
-<p class="ppt-lead">策略的核心：把"用户为什么犹豫"翻译成"推荐区此刻应该展示什么"。</p>
-          </div>
-          <div class="ppt-action-table">
-            <div class="ppt-action-row head">
-              <span>用户阻力</span>
-              <span>设计策略</span>
-              <span>具体设计动作</span>
-              <span>后续拆解</span>
-            </div>
-            <div class="ppt-action-row">
-              <strong>新客不知道第一次送什么</strong>
-              <b>轻量起步</b>
-              <p>在推荐区前置低钻礼物，用“第一次送什么好”解释为什么适合现在送。</p>
-              <em>方案 1</em>
-            </div>
-            <div class="ppt-action-row">
-              <strong>老客复访还要重新找礼物</strong>
-              <b>路径缩短</b>
-              <p>把历史常送礼物放到推荐位，并提供“再送一个”的直接动作。</p>
-              <em>方案 2</em>
-            </div>
-            <div class="ppt-action-row">
-              <strong>粉丝身份任务容易被忽略</strong>
-              <b>状态前置</b>
-              <p>灯牌待续亮时在礼物面板首屏提醒，并直接给出一键点亮入口。</p>
-              <em>方案 3</em>
-            </div>
-            <div class="ppt-action-row">
-              <strong>用户不知道本场送什么最有用</strong>
-              <b>任务关联</b>
-              <p>主播有心愿时优先展示心愿礼物、进度和助力按钮。</p>
-              <em>方案 4</em>
-            </div>
-            <div class="ppt-action-row">
-              <strong>长期支持的成长感不明显</strong>
-              <b>关系可视化</b>
-              <p>无强任务时展示关系进度、等级差值和常送礼物角标。</p>
-              <em>关系进度</em>
-            </div>
-            <div class="ppt-action-row">
-              <strong>送完只像交易完成</strong>
-              <b>情绪确认</b>
-              <p>送后用轻提示确认“主播已收到”，把支付结果转成心意反馈。</p>
-              <em>送后确认</em>
+            <h2 class="ppt-title"><span class="pink">动作体验路径</span>与改版前后 <small>/ Action Experience</small></h2>
+<p class="ppt-lead">按一次送礼体验展开：看见触发、打开面板、完成送出。每一步都保留 Before / After 对照，说明用户从当前路径走到优化动作的变化。</p>
+            <div class="ppt-action-journey">
+              <span><b>01 Trigger</b>从观看兴趣触发表达</span>
+              <i>→</i>
+              <span><b>02 Decide</b>从打开面板做出选择</span>
+              <i>→</i>
+              <span><b>03 Feedback</b>从送出动作获得回应</span>
             </div>
           </div>
-<div class="ppt-bottom-quote">核心：让推荐区在不同状态下给出<span class="pink">"此刻最该做的一步"</span>。</div>
+          <div class="ppt-action-bundle-board">
+            <section class="ppt-action-bundle">
+              <div class="ppt-action-bundle-head">
+                <span>01 Trigger</span>
+                <h3>看见兴趣后，轻量触发表达入口</h3>
+                <p>当用户已经产生观看兴趣，入口用轻提示承接表达意愿；进入面板后，首屏直接给低压力首送选择。</p>
+                <div class="ppt-action-visuals">
+                  <article class="ppt-action-visual-pair">
+                    <span class="ppt-action-visual-title">入口从静态变成轻提示</span>
+                    <div class="ppt-action-shot-row">
+                      <figure data-state="Before"><img src="assets/current-live-room.png" alt="改版前直播间入口静态"><figcaption>静态入口</figcaption></figure>
+                      <i>→</i>
+                      <figure class="after" data-state="After"><img src="assets/action-entry-bubble.png" alt="改版后入口弱气泡提示"><figcaption>兴趣承接</figcaption></figure>
+                    </div>
+                  </article>
+                  <article class="ppt-action-visual-pair">
+                    <span class="ppt-action-visual-title">首屏从货架变成破冰选择</span>
+                    <div class="ppt-action-shot-row">
+                      <figure data-state="Before"><img src="assets/current-send-gift.png" alt="改版前通用礼物货架"><figcaption>通用货架</figcaption></figure>
+                      <i>→</i>
+                      <figure class="after" data-state="After"><img src="assets/礼物展开页-3轻量意图筛选@1.5x.png" alt="改版后首送意图筛选"><figcaption>破冰推荐</figcaption></figure>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="ppt-action-items">
+                <article class="ppt-action-ba">
+                  <h4>入口承接观看兴趣</h4>
+                  <div><b>Before</b><span>礼物入口保持静态，表达时机由用户自行判断。</span></div>
+                  <em>→</em>
+                  <div><b>After</b><span>观看兴趣出现后，弱气泡和胶囊把心意接到面板。</span></div>
+                </article>
+                <article class="ppt-action-ba">
+                  <h4>首屏给出低压力首送</h4>
+                  <div><b>Before</b><span>推荐 Tab 首屏以通用货架承接，用户先浏览再选择。</span></div>
+                  <em>→</em>
+                  <div><b>After</b><span>首屏给出“第一次送什么好”，用低钻礼物完成轻量起步。</span></div>
+                </article>
+              </div>
+            </section>
+            <section class="ppt-action-bundle">
+              <div class="ppt-action-bundle-head">
+                <span>02 Decide</span>
+                <h3>打开面板后，把选择理由放到首屏</h3>
+                <p>用户打开面板时直接看到当前最相关的身份、目标和成长信息，推荐区用清晰理由帮助完成选择。</p>
+                <div class="ppt-action-visuals">
+                  <article class="ppt-action-visual-pair">
+                    <span class="ppt-action-visual-title">灯牌任务进入首屏动作</span>
+                    <div class="ppt-action-shot-row">
+                      <figure data-state="Before"><img src="assets/action-light-before.png" alt="改版前灯牌动作藏在粉丝团 Tab"><figcaption>粉丝团入口</figcaption></figure>
+                      <i>→</i>
+                      <figure class="after" data-state="After"><img src="assets/action-light-after.png" alt="改版后推荐区展示灯牌待点亮一键动作"><figcaption>待点亮推荐</figcaption></figure>
+                    </div>
+                  </article>
+                  <article class="ppt-action-visual-pair">
+                    <span class="ppt-action-visual-title">主播心愿进入礼物推荐</span>
+                    <div class="ppt-action-shot-row">
+                      <figure data-state="Before"><img src="assets/action-wish-before.png" alt="改版前主播心愿需要从独立心愿浮层进入"><figcaption>心愿浮层</figcaption></figure>
+                      <i>→</i>
+                      <figure class="after" data-state="After"><img src="assets/old-wish-gift.png" alt="改版后主播心愿礼物推荐"><figcaption>心愿前置</figcaption></figure>
+                    </div>
+                  </article>
+                  <article class="ppt-action-visual-pair">
+                    <span class="ppt-action-visual-title">关系进度进入送礼场景</span>
+                    <div class="ppt-action-shot-row">
+                      <figure data-state="Before"><img src="assets/current-send-gift.png" alt="改版前送礼面板以货架展示为主"><figcaption>货架浏览</figcaption></figure>
+                      <i>→</i>
+                      <figure class="after" data-state="After"><img src="assets/old-relation-progress.png" alt="改版后关系进度推荐"><figcaption>进度前置</figcaption></figure>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="ppt-action-items">
+                <article class="ppt-action-ba">
+                  <h4>推荐理由跟随状态变化</h4>
+                  <div><b>Before</b><span>礼物信息以图标和价格为主，状态语义由用户自行补全。</span></div>
+                  <em>→</em>
+                  <div><b>After</b><span>每个状态突出一条主推荐，并说明适合此刻送的原因。</span></div>
+                </article>
+                <article class="ppt-action-ba">
+                  <h4>身份和目标集中到首屏</h4>
+                  <div><b>Before</b><span>灯牌、心愿、等级进度分别散落在任务和直播信息里。</span></div>
+                  <em>→</em>
+                  <div><b>After</b><span>推荐区首屏按状态展示灯牌续亮、主播心愿、关系进度。</span></div>
+                </article>
+              </div>
+            </section>
+            <section class="ppt-action-bundle">
+              <div class="ppt-action-bundle-head">
+                <span>03 Feedback</span>
+                <h3>完成送出后，把支持转成可感知回应</h3>
+                <p>老客复送路径更短，送后反馈更明确，长期支持通过关系资产持续沉淀。</p>
+                <div class="ppt-action-visuals">
+                  <article class="ppt-action-visual-pair">
+                    <span class="ppt-action-visual-title">复送路径变成一键动作</span>
+                    <div class="ppt-action-shot-row">
+                      <figure data-state="Before"><img src="assets/current-send-gift.png" alt="改版前老客沿用货架路径"><figcaption>货架路径</figcaption></figure>
+                      <i>→</i>
+                      <figure class="after" data-state="After"><img src="assets/old-repeat-gift.png" alt="改版后常送礼物一键再送"><figcaption>一键再送</figcaption></figure>
+                    </div>
+                  </article>
+                  <article class="ppt-action-visual-pair">
+                    <span class="ppt-action-visual-title">贵价常送带出爽感反馈</span>
+                    <div class="ppt-action-shot-row">
+                      <figure data-state="送前"><img src="assets/action-premium-repeat.png" alt="贵价常送礼物一键再送"><figcaption>贵价再送</figcaption></figure>
+                      <i>→</i>
+                      <figure class="after" data-state="送后"><img src="assets/action-premium-feedback.png" alt="贵价礼物送出后特效反馈"><figcaption>特效反馈</figcaption></figure>
+                    </div>
+                  </article>
+                  <article class="ppt-action-visual-pair">
+                    <span class="ppt-action-visual-title">长期支持沉淀为关系资产</span>
+                    <div class="ppt-action-shot-row">
+                      <figure data-state="Before"><img src="assets/status-gift-feedback.png" alt="改版前送礼成长信息分散"><figcaption>成长分散</figcaption></figure>
+                      <i>→</i>
+                      <figure class="after" data-state="After"><img src="assets/old-relation-progress.png" alt="改版后关系资产可视"><figcaption>关系进度</figcaption></figure>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="ppt-action-items">
+                <article class="ppt-action-ba">
+                  <h4>常送礼物直接复用</h4>
+                  <div><b>Before</b><span>老客复访沿用完整货架路径，重新定位常送礼物。</span></div>
+                  <em>→</em>
+                  <div><b>After</b><span>推荐区展示常送礼物和“再送一个”，缩短重复路径。</span></div>
+                </article>
+                <article class="ppt-action-ba">
+                  <h4>送后反馈确认被接收</h4>
+                  <div><b>Before</b><span>送出结果进入流水区，反馈偏交易完成。</span></div>
+                  <em>→</em>
+                  <div><b>After</b><span>用轻提示确认支持已被接收，并连接粉丝身份或关系进度。</span></div>
+                </article>
+                <article class="ppt-action-ba">
+                  <h4>关系成长持续可见</h4>
+                  <div><b>Before</b><span>长期支持的成长信息停留在粉丝团和等级入口。</span></div>
+                  <em>→</em>
+                  <div><b>After</b><span>展示亲密值、等级差值和常送标记，让长期支持可积累。</span></div>
+                </article>
+              </div>
+            </section>
+          </div>
+<div class="ppt-bottom-quote">动作归类后的阅读方式：<span class="pink">当前路径 → 优化动作 → 用户更快完成表达</span>。</div>
         </div>
       </section>
 
@@ -9899,7 +10358,7 @@
         <div class="ppt-top"><span><b>2026</b> PORTFOLIO</span><span>SHOWCASE</span></div>
         <div class="ppt-content">
           <div class="ppt-head">
-            <h2 class="ppt-title small">推荐区系统如何工作 <small>/ System Logic</small></h2>
+            <h2 class="ppt-title small">推荐区如何动态展示 <small>/ Display Logic</small></h2>
             <p class="ppt-lead">把复杂用户状态翻译成一个可直接执行的下一步——先判断当前情境，再给出唯一主推荐，同一时间只推一个动作。</p>
           </div>
           <div class="ppt-system-board">
@@ -9936,7 +10395,7 @@
               <div class="ppt-first-copy">
                 <span class="ppt-story-kicker">01 Trigger moment</span>
                 <h3>先等兴趣出现，再承接第一次表达</h3>
-                <p>新客还没有送礼经验，入口提示要克制。只有用户已经表现出观看兴趣或互动意愿时，送礼入口才给一个轻量提示，把“想支持一下”接到礼物面板。</p>
+                <p>新客处在首次送礼阶段，入口提示要克制。用户已经表现出观看兴趣或互动意愿时，送礼入口给一个轻量提示，把“想支持一下”接到礼物面板。</p>
                 <div class="ppt-first-signals">
                   <span>观看 ≥ 30s</span>
                   <span>点赞 / 弹幕互动</span>
@@ -10108,7 +10567,7 @@
             <article class="ppt-path"><h3>改版前</h3><ol><li><b>1</b><span>打开面板，看到全量礼物货架。</span></li><li><b>2</b><span>按分类浏览，自己判断礼物含义与价格。</span></li><li><b>3</b><span>不确定送什么合适，出现犹豫或关闭面板。</span></li><li><b>4</b><span>送出后反馈弱，难确认心意是否被看见。</span></li></ol><div class="ppt-tags"><span>选择压力大</span><span>关系反馈弱</span></div></article>
             <article class="ppt-path"><h3>改版后</h3><ol><li><b>1</b><span>打开面板，首屏看到与自己状态相关的推荐理由。</span></li><li><b>2</b><span>系统给出对应礼物和快速动作，不需要重新翻货架。</span></li><li><b>3</b><span>一键完成送礼，送后获得轻量确认反馈。</span></li></ol><div class="ppt-tags"><span>路径更短</span><span>完成率更高</span><span>关系感更强</span></div></article>
           </div>
-          <div class="ppt-bottom-quote">轻量、不打扰、不重构原有流程：推荐区帮用户决策，但不变成强运营入口。</div>
+          <div class="ppt-bottom-quote">轻量、克制、沿用原有流程：推荐区帮用户决策，同时保持观看体验连续。</div>
         </div>
       </section>
 
@@ -10125,7 +10584,7 @@
             <article class="ppt-card ppt-metric"><div class="ppt-icon">01</div><h3>首送是否更容易发生</h3><p>验证新客破冰推荐是否有效。</p><span class="ppt-metric-value label">新客首送完成率</span><div class="ppt-chart"></div><ul class="ppt-list"><li>同时观察推荐区点击率、小额礼物送出率、面板退出率。</li></ul></article>
             <article class="ppt-card ppt-metric"><div class="ppt-icon">02</div><h3>老客是否更快复送</h3><p>验证常送与一键再送是否缩短路径。</p><span class="ppt-metric-value label">送礼决策时长</span><div class="ppt-chart"></div><ul class="ppt-list"><li>同时观察常送入口点击率、复送完成率、取消支付率。</li></ul></article>
             <article class="ppt-card ppt-metric"><div class="ppt-icon">03</div><h3>任务型推荐是否被响应</h3><p>验证灯牌和心愿是否适合前置。</p><span class="ppt-metric-value label">任务完成率</span><div class="ppt-chart"></div><ul class="ppt-list"><li>同时观察灯牌续亮率、心愿礼物送出率、心愿进度贡献。</li></ul></article>
-            <article class="ppt-card ppt-metric"><div class="ppt-icon">04</div><h3>有没有打扰直播体验</h3><p>分层推荐不能变成强运营打扰。</p><span class="ppt-metric-value label">体验护栏指标</span><div class="ppt-chart"></div><ul class="ppt-list"><li>重点观察负反馈率、面板快速关闭率、观看时长与投诉反馈。</li></ul></article>
+            <article class="ppt-card ppt-metric"><div class="ppt-icon">04</div><h3>直播体验是否保持连续</h3><p>分层推荐保持轻量克制，观看体验维持顺畅。</p><span class="ppt-metric-value label">体验护栏指标</span><div class="ppt-chart"></div><ul class="ppt-list"><li>重点观察负反馈率、面板快速关闭率、观看时长与投诉反馈。</li></ul></article>
           </div>
           <div class="ppt-bottom-quote">验证的目标：找到<span class="pink">哪种状态、什么时机、哪种表达强度</span>最适合被推荐。</div>
         </div>
@@ -10137,7 +10596,7 @@
         <div class="ppt-content">
           <div class="ppt-head">
             <h2 class="ppt-title small">研究边界与<span class="pink">设计假设</span></h2>
-            <p class="ppt-lead">我没有完整业务状态、用户分群和真实转化数据，以下是基于公开观察的一组设计假设。</p>
+            <p class="ppt-lead">当前方案基于公开观察形成设计假设，后续需要结合业务状态、用户分群和真实转化数据验证。</p>
           </div>
           <div class="ppt-grid two">
             <article class="ppt-card tall">
@@ -10154,7 +10613,7 @@
               <div class="ppt-icon">B</div>
               <h3>哪些判断需要真实数据校准</h3>
               <ul class="ppt-list">
-                <li>哪些用户状态最值得优先展示，不能只靠设计直觉决定。</li>
+                <li>哪些用户状态最值得优先展示，需要通过灰度数据判断。</li>
                 <li>新客、老客、粉丝团用户的真实占比与价值贡献会影响模块优先级。</li>
                 <li>文案和视觉强度需要通过负反馈率、退出率和停留时长来校准。</li>
                 <li>推荐规则必须和业务策略、风控、主播生态目标一起验证。</li>
@@ -10179,754 +10638,11 @@
             <article class="ppt-card center"><span class="num">03</span><h3>如果测试发现打扰感强</h3><p>我会降低推荐视觉强度，把强提示改成弱入口，并限制触发条件，保留观看沉浸感。</p></article>
             <article class="ppt-card center"><span class="num">04</span><h3>这次最大的收获</h3><p>有效推荐 = 在正确时机给用户一个足够明确、足够轻的下一步。</p></article>
           </div>
-          <div class="ppt-bottom-quote">好的推荐不是给用户更多选择，而是在对的时机<span class="pink">替用户做完那个最小决策</span>。</div>
+          <div class="ppt-bottom-quote">推荐的终极目标：在对的时机，<span class="pink">替用户做完那个最小决策</span>。</div>
         </div>
       </section>
     </main>
 
-    <main class="ux-deck" aria-label="直播礼物面板分层推荐作品集内容">
-      <section class="ux-page" id="overview" data-ghost="ACTIONS">
-        <div class="ux-side-rail"><span class="active">Live</span><span>Gift</span><span>Experience</span><span>Design</span></div>
-        <div class="ux-page-no">02<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>UI/UX DESIGN</span></div>
-          <div class="ux-head">
-            <h2 class="ux-title"><span class="pink">核心设计动作总览</span> <small>/ Actions</small></h2>
-            <p class="ux-lead">把推荐区从“礼物货架”改成按用户状态动态变化的送礼决策入口。每个动作都对应一个明确问题，不再只是换皮卡片。</p>
-          </div>
-          <div class="ux-grid six ux-capability-list">
-            <article class="ux-card ux-action-card"><span class="num">01</span><span class="icon">F</span><h3>首送破冰</h3><p>新客不知道第一次送什么时，用小额礼物和表达理由完成第一步。</p></article>
-            <article class="ux-card ux-action-card"><span class="num">02</span><span class="icon">R</span><h3>常送再送</h3><p>老客不需要重新找礼物，把历史偏好转成一键复送入口。</p></article>
-            <article class="ux-card ux-action-card"><span class="num">03</span><span class="icon">B</span><h3>灯牌点亮</h3><p>粉丝身份任务前置，让关系维护动作在面板里被看见。</p></article>
-            <article class="ux-card ux-action-card"><span class="num">04</span><span class="icon">W</span><h3>主播心愿</h3><p>主播有明确目标时，直接回答“本场送什么更有效”。</p></article>
-            <article class="ux-card ux-action-card"><span class="num">05</span><span class="icon">P</span><h3>关系进度</h3><p>亲密值、等级差额和常送角标，让长期支持变得可感知。</p></article>
-            <article class="ux-card ux-action-card"><span class="num">06</span><span class="icon">C</span><h3>送后反馈</h3><p>送礼不是结束，反馈要让用户确认支持已经被看见。</p></article>
-          </div>
-          <div class="ux-quote">每个动作都对应一个明确问题，推荐区只做<span class="pink">当前最该做的一步</span>。</div>
-        </div>
-      </section>
-
-      <section class="ux-page" id="background" data-ghost="BACKGROUND">
-        <div class="ux-side-rail"><span class="active">Live</span><span>Gift</span><span>Experience</span><span>Design</span></div>
-        <div class="ux-page-no">03<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>CONTEXT</span></div>
-          <div class="ux-head">
-            <h2 class="ux-title">项目背景 <small>/ Background</small></h2>
-            <p class="ux-lead">直播间送礼是用户从观看走向表达的重要一步。当前礼物面板基础能力完整，推荐区位于用户准备送礼的第一屏，适合根据用户状态给出不同的送礼推荐。</p>
-          </div>
-          <div class="ux-grid two">
-            <div class="ux-dark-panel"><div class="ux-phone wide"><img src="assets/current-send-gift.png" alt="当前直播礼物面板"></div></div>
-            <div class="ux-goal-map">
-              <div class="ux-goal-core"><div><strong>送礼决策入口</strong><span>观看兴趣 → 心意表达 → 关系沉淀</span></div></div>
-              <article class="ux-card ux-goal-node top"><span class="num">01</span><h3>基础能力完整</h3><p>入口、品类、价格和赠送流程已经成熟。</p></article>
-              <article class="ux-card ux-goal-node left"><span class="num">02</span><h3>用户状态分化</h3><p>不同阶段用户打开面板时，关注的送礼问题不同。</p></article>
-              <article class="ux-card ux-goal-node right"><span class="num">03</span><h3>推荐区机会</h3><p>首屏推荐适合直接给出当前最匹配的送礼动作。</p></article>
-            </div>
-          </div>
-          <div class="ux-page-statement">背景机会：让推荐区承担<span class="pink">根据状态给出送礼推荐</span>的角色。</div>
-        </div>
-      </section>
-
-      <section class="ux-page" id="research" data-ghost="RESEARCH">
-        <div class="ux-side-rail"><span>Live</span><span class="active">Gift</span><span>Experience</span><span>Design</span></div>
-        <div class="ux-page-no">04<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>RESEARCH</span></div>
-          <div class="ux-head">
-            <h2 class="ux-title">现状调研与竞品观察 <small>/ Research</small></h2>
-            <p class="ux-lead">当前流程已覆盖推荐、礼物货架、主播心愿、粉丝任务和送后反馈，但这些能力尚未按用户状态组织成针对性的推荐动作。</p>
-          </div>
-          <div class="ux-research-board">
-            <div class="ux-capability-list">
-              <article class="ux-card"><span class="num">01</span><h3>推荐 Tab</h3><p>位置靠前，但更多是热度货架，缺少场景解释。</p></article>
-              <article class="ux-card"><span class="num">02</span><h3>礼物货架</h3><p>品类完整，但新客容易被选择数量压住。</p></article>
-              <article class="ux-card"><span class="num">03</span><h3>主播心愿</h3><p>目标明确，却和推荐区的联系偏弱。</p></article>
-              <article class="ux-card"><span class="num">04</span><h3>粉丝任务</h3><p>能驱动关系，但入口深，送礼当下不一定被看到。</p></article>
-              <article class="ux-card"><span class="num">05</span><h3>送后反馈</h3><p>有交易结果，但情绪确认和关系回应不够突出。</p></article>
-            </div>
-            <div class="ux-table" aria-label="竞品推荐能力对比">
-              <div class="ux-table-row"><span>产品</span><span>首送推荐</span><span>常送快捷</span><span>任务关联</span></div>
-              <div class="ux-table-row"><span>本产品</span><span class="ux-missing">—</span><span class="ux-missing">—</span><span class="ux-partial">部分</span></div>
-              <div class="ux-table-row"><span>抖音直播</span><span class="ux-check">✓</span><span class="ux-check">✓</span><span class="ux-check">✓</span></div>
-              <div class="ux-table-row"><span>快手直播</span><span class="ux-check">✓</span><span class="ux-check">✓</span><span class="ux-partial">部分</span></div>
-              <div class="ux-table-row"><span>B站直播</span><span class="ux-check">✓</span><span class="ux-missing">—</span><span class="ux-check">✓</span></div>
-              <div class="ux-table-row"><span>视频号直播</span><span class="ux-missing">—</span><span class="ux-check">✓</span><span class="ux-partial">部分</span></div>
-            </div>
-          </div>
-          <div class="ux-quote">结论：各家单点能力已齐备，缺的是<span class="pink">按用户状态串联的推荐路径</span>。</div>
-        </div>
-      </section>
-
-      <section class="ux-page" id="problem" data-ghost="PROBLEM">
-        <div class="ux-side-rail"><span>Live</span><span class="active">Gift</span><span>Experience</span><span>Design</span></div>
-        <div class="ux-page-no">05<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>PROBLEM</span></div>
-          <div class="ux-head">
-            <h2 class="ux-title"><span class="pink">问题定义</span> <small>/ Problem</small></h2>
-            <p class="ux-lead">不同用户进入礼物面板时，面对的送礼决策挑战并不相同。通用货架无法同时满足新客、老客、粉丝团用户和心愿响应用户的决策需求。</p>
-          </div>
-          <div class="ux-persona-grid">
-            <article class="ux-card ux-persona"><div class="ux-image-slot"><div><strong>素材位</strong><span>新客画像或直播间场景截图</span></div></div><div class="copy"><span class="num">01</span><h3><span class="pink">新客</span>不知道送什么</h3><p>不确定主播偏好与直播氛围，缺少送礼参考与决策信心。</p></div></article>
-            <article class="ux-card ux-persona"><div class="ux-image-slot"><div><strong>素材位</strong><span>老客复访或历史送礼截图</span></div></div><div class="copy"><span class="num">02</span><h3><span class="pink">老客</span>想快速复送</h3><p>希望高效延续关系，不想反复挑选，追求一键送出。</p></div></article>
-            <article class="ux-card ux-persona"><div class="ux-image-slot"><div><strong>素材位</strong><span>粉丝团身份或亲密值截图</span></div></div><div class="copy"><span class="num">03</span><h3><span class="pink">粉丝团用户</span>想维护身份</h3><p>希望送礼体现身份与忠诚，需要更具象的身份表达。</p></div></article>
-            <article class="ux-card ux-persona"><div class="ux-image-slot"><div><strong>素材位</strong><span>主播心愿或房间目标截图</span></div></div><div class="copy"><span class="num">04</span><h3>有心愿时不知道<span class="pink">本场送什么更有效</span></h3><p>有明确目标，但不清楚哪份礼物最能帮助主播达成心愿。</p></div></article>
-          </div>
-          <div class="ux-page-statement">通用货架<span class="pink">无法同时满足</span>不同用户的送礼决策需求。</div>
-        </div>
-      </section>
-
-      <section class="ux-page" id="solution" data-ghost="FIRST GIFT">
-        <div class="ux-side-rail"><span>Live</span><span class="active">Gift</span><span>Experience</span><span>Design</span></div>
-        <div class="ux-page-no">06<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>PAGE SOLUTION 1</span></div>
-          <div class="ux-solution-layout">
-            <div class="ux-head">
-              <h2 class="ux-title"><span class="pink">首次破冰推荐</span></h2>
-              <p class="ux-lead">新客未送过的首次场景页面，先帮用户完成一次轻量表达，比让他理解全货架更重要。</p>
-              <div class="ux-quote">先帮新客完成第一次轻量表达，比让他理解全货架更重要。</div>
-            </div>
-            <div class="ux-phone wide"><img src="assets/solution-first-filter.png" alt="首次破冰推荐方案"></div>
-            <div class="ux-solution-list">
-              <article class="ux-white-card"><span class="num">01</span><h3>小额礼物前置</h3><p>将 1 钻等小额礼物前置推荐，降低新客心理与经济门槛。</p></article>
-              <article class="ux-white-card"><span class="num">02</span><h3>降低首次选择压力</h3><p>以“第一次送什么好？”引导式推荐，减少思考，快速形成送礼习惯。</p></article>
-              <article class="ux-white-card"><span class="num">03</span><h3>一键完成表达</h3><p>突出“一键送出”能力，缩短路径，让新客立刻完成第一次互动。</p></article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="ux-page" id="showcase" data-ghost="SHOWCASE">
-        <div class="ux-side-rail"><span>Live</span><span class="active">Gift</span><span>Experience</span><span>Design</span></div>
-        <div class="ux-page-no">07<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>INTERFACE GALLERY</span></div>
-          <div class="ux-head">
-            <h2 class="ux-title">页面展示 <small>/ Showcase Overview</small><span class="ux-script">打通全场景的直播礼物推荐体验</span></h2>
-            <p class="ux-lead">5 类推荐状态统一在推荐 Tab 首屏呈现，形成一个可动态切换的推荐区系统，而不是单点页面优化。</p>
-          </div>
-          <div class="ux-showcase-grid">
-            <article class="ux-card ux-showcase-card"><div class="ux-phone"><img src="assets/solution-first-filter.png" alt="新客首送破冰"></div><div><span class="num">01</span><h3>首送推荐</h3><p>建立心动第一印象，高转化启动推荐。</p></div></article>
-            <article class="ux-card ux-showcase-card"><div class="ux-phone"><img src="assets/solution-repeat.png" alt="常送推荐"></div><div><span class="num">02</span><h3>常送推荐</h3><p>记住常送习惯，复送更快更顺手。</p></div></article>
-            <article class="ux-card ux-showcase-card"><div class="ux-phone"><img src="assets/solution-light.png" alt="灯牌推荐"></div><div><span class="num">03</span><h3>灯牌推荐</h3><p>强化粉丝身份认同，提升灯牌开通率。</p></div></article>
-            <article class="ux-card ux-showcase-card"><div class="ux-phone"><img src="assets/solution-wish.png" alt="主播心愿推荐"></div><div><span class="num">04</span><h3>主播心愿</h3><p>连接心愿与心意，提升心愿达成效率。</p></div></article>
-            <article class="ux-card ux-showcase-card"><div class="ux-phone"><img src="assets/solution-relation.png" alt="关系进度推荐"></div><div><span class="num">05</span><h3>关系进度</h3><p>可视化关系成长，激励持续互动。</p></div></article>
-            <article class="ux-card ux-showcase-card"><div class="ux-phone"><video src="assets/new-user-break-ice-demo.mp4" muted controls playsinline poster="assets/solution-first-intent.png"></video></div><div><span class="num">06</span><h3>交互演示</h3><p>从意图筛选到一键送出，验证路径收敛。</p></div></article>
-          </div>
-          <div class="ux-quote">这是一个<span class="pink">可动态切换</span>的推荐区系统，不是单点页面优化。</div>
-        </div>
-      </section>
-
-      <section class="ux-page" id="validation" data-ghost="METRICS">
-        <div class="ux-side-rail"><span>Live</span><span>Gift</span><span>Experience</span><span class="active">Design</span></div>
-        <div class="ux-page-no">08<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>METRICS & NEXT STEPS</span></div>
-          <div class="ux-head">
-            <h2 class="ux-title">方案价值、<span class="pink">指标与复盘</span></h2>
-            <p class="ux-lead">验证不只看收入，而是看每个断点有没有被解决：转化、效率、关系和护栏指标要一起观察。</p>
-          </div>
-          <div class="ux-metrics-grid">
-            <article class="ux-card ux-metric-card"><span class="icon">↑</span><h3>首送验证</h3><p>概念方案未上线，不写结果数据。</p><span class="ux-metric-value">新客首送完成率</span><div class="ux-chart"></div><ul class="ux-metric-list"><li>观察推荐区点击率、小额礼物送出率、面板退出率。</li><li>素材位：灰度后转化趋势图。</li></ul></article>
-            <article class="ux-card ux-metric-card"><span class="icon">T</span><h3>效率验证</h3><p>判断是否减少重复寻找。</p><span class="ux-metric-value">送礼决策时长</span><div class="ux-chart"></div><ul class="ux-metric-list"><li>观察常送入口点击率、复送完成率、取消支付率。</li><li>素材位：决策时长对比图。</li></ul></article>
-            <article class="ux-card ux-metric-card"><span class="icon">R</span><h3>任务关联</h3><p>判断灯牌和心愿是否适合前置。</p><span class="ux-metric-value">任务完成率</span><div class="ux-chart"></div><ul class="ux-metric-list"><li>观察灯牌续亮率、心愿礼物送出率、心愿进度贡献。</li><li>素材位：任务转化看板。</li></ul></article>
-            <article class="ux-card ux-metric-card"><span class="icon">S</span><h3>护栏指标</h3><p>保护观看体验和消费感受。</p><span class="ux-metric-value">负反馈 / 退出率</span><div class="ux-chart"></div><ul class="ux-metric-list"><li>观察负反馈率、面板快速关闭率、观看时长。</li><li>素材位：护栏指标看板。</li></ul></article>
-          </div>
-          <div class="ux-quote">用数据验证推荐区价值，再持续优化优先级与表达强度。</div>
-        </div>
-      </section>
-
-      <section class="ux-page" id="decision-path" data-ghost="BEFORE AFTER">
-        <div class="ux-side-rail"><span>Live</span><span>Gift</span><span class="active">Experience</span><span>Design</span></div>
-        <div class="ux-page-no">09<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>BEFORE / AFTER</span></div>
-          <div class="ux-head">
-            <h2 class="ux-title">改版前后的用户决策路径对比</h2>
-            <p class="ux-lead">对比重点：用户少做了哪些事、少犹豫了哪些步。</p>
-          </div>
-          <div class="ux-path-board">
-            <article class="ux-dark-panel ux-path-column"><h3>改版前</h3><ol class="ux-path-steps"><li><b>1</b><span>打开面板，看到全量礼物货架。</span></li><li><b>2</b><span>按分类浏览，自己判断礼物含义与价格。</span></li><li><b>3</b><span>不确定送什么合适，出现犹豫或关闭面板。</span></li><li><b>4</b><span>送出后反馈弱，难确认心意是否被看见。</span></li></ol><div class="ux-tags"><span>选择压力大</span><span>关系反馈弱</span></div></article>
-            <article class="ux-dark-panel ux-path-column"><h3>改版后</h3><ol class="ux-path-steps"><li><b>1</b><span>打开面板，首屏看到与自己状态相关的推荐理由。</span></li><li><b>2</b><span>系统给出对应礼物和快速动作，不需要重新翻货架。</span></li><li><b>3</b><span>一键完成送礼，送后获得轻量确认反馈。</span></li></ol><div class="ux-tags"><span>路径更短</span><span>完成率更高</span><span>关系感更强</span></div></article>
-          </div>
-          <div class="ux-page-statement">用户不再需要自己想清楚送什么，推荐区直接给出<span class="pink">当前最合适的选项</span>。</div>
-        </div>
-      </section>
-
-      <section class="ux-page" id="review" data-ghost="BOUNDARY">
-        <div class="ux-side-rail"><span>Live</span><span>Gift</span><span>Experience</span><span class="active">Design</span></div>
-        <div class="ux-page-no">10<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>RISK CONTROL</span></div>
-          <div class="ux-head">
-            <h2 class="ux-title">风险控制与设计边界：轻量、不打扰、不重构原有流程</h2>
-            <p class="ux-lead">分层推荐要帮用户做决策，但不能让礼物面板变成强运营入口。所有模块都可以灰度、关闭或回退到完整礼物货架。</p>
-          </div>
-          <div class="ux-grid three">
-            <article class="ux-card"><span class="num">01</span><h3>新客触发过度打扰</h3><p>仅在兴趣信号出现后触发，不在用户一进房间时推礼物。</p></article>
-            <article class="ux-card"><span class="num">02</span><h3>推荐区变复杂</h3><p>分层模块只占首屏，下方保留完整货架。</p></article>
-            <article class="ux-card"><span class="num">03</span><h3>诱导消费感过强</h3><p>新客默认小额礼物，用表达语义引导，不前置高价礼物。</p></article>
-          </div>
-          <div class="ux-page-statement">方案边界是让推荐区更懂用户，不是重做礼物面板。</div>
-        </div>
-      </section>
-
-      <section class="ux-page" id="reflection" data-ghost="REFLECTION">
-        <div class="ux-side-rail"><span>Live</span><span>Gift</span><span>Experience</span><span class="active">Design</span></div>
-        <div class="ux-page-no">11<small>/ 12</small></div>
-        <div class="ux-inner">
-          <div class="ux-topline"><span>2026 PORTFOLIO</span><span>REFLECTION</span></div>
-          <div class="ux-head">
-            <h2 class="ux-title">做完这个项目，我重新理解了三件事</h2>
-            <p class="ux-lead">设计不是画界面，是在限制条件下做取舍。推荐区真正要解决的是“用户此刻该怎么完成心意表达”。</p>
-          </div>
-          <div class="ux-reflection-grid">
-            <article class="ux-card"><span class="num">01</span><h3>推荐不等于多给选项</h3><p>用户的问题是不知道为什么要选这个。有效推荐是减少选项、给出理由。</p></article>
-            <article class="ux-card"><span class="num">02</span><h3>克制比创新更难</h3><p>保留原有流程、只优化首屏推荐，看起来范围小，但更需要判断每个动作是否真的必要。</p></article>
-            <article class="ux-card"><span class="num">03</span><h3>用户分层要落到具体动作</h3><p>新客、老客和粉丝是三种决策情境，每种情境都要有不同的首屏推荐。</p></article>
-          </div>
-          <div class="ux-quote">下一次做推荐类产品，我会更早问：用户此刻需要的是<span class="pink">更多选择</span>，还是<span class="pink">更少犹豫</span>？</div>
-        </div>
-      </section>
-    </main>
-
-    <section class="project-brief" id="overview">
-      <div class="brief-inner">
-        <div class="brief-card">
-          <h2>项目一句话 <span class="en">Project Overview</span></h2>
-          <p>我把直播礼物推荐 Tab 从“大家都一样的礼物货架”，改成会根据用户关系阶段、送礼习惯和直播间目标变化的送礼决策位。</p>
-          <div class="brief-points">
-            <div class="brief-point"><strong>表达心意</strong><span>Emotion</span></div>
-            <div class="brief-point"><strong>建立关系</strong><span>Relation</span></div>
-            <div class="brief-point"><strong>参与氛围</strong><span>Live Mood</span></div>
-          </div>
-        </div>
-        <div class="brief-card light">
-          <h3>我解决的体验问题 <span class="en">Design Focus</span></h3>
-          <p>补上用户决策中缺失的三件事：此刻为什么送、哪份礼物最合适、送完如何确认心意被看见。</p>
-          <div class="light-list">
-            <span>降低首送门槛</span>
-            <span>提升复送效率</span>
-            <span>强化关系经营</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="outcome-first" id="outcome">
-      <div class="outcome-inner">
-        <div class="outcome-head">
-<div class="slide-head layered-head"><h2>最终方案：推荐区变成动态送礼决策入口</h2><span class="en">Design Outcome First</span><span class="script-note">What changed</span></div>
-          <p>原本推荐区只是在首屏陈列礼物；改版后，首屏会给出推荐理由、对应礼物和快速动作，把用户从“我想送点什么”带到“我知道现在该送这个”。</p>
-        </div>
-        <div class="outcome-stage">
-          <article class="outcome-card featured">
-            <div class="outcome-visual"><img src="assets/solution-first-filter.png" alt="新客首送破冰推荐界面"></div>
-            <div class="outcome-copy">
-              <span class="eyebrow">主方案</span>
-              <h3>把礼物推荐变成一次可解释的送礼决策</h3>
-              <p>推荐卡片先说明推荐原因，再给出礼物、价格和动作按钮。用户能快速理解下一步为什么值得点。</p>
-              <div class="outcome-points">
-                <span>新客：先回答“第一次送什么更合适”</span>
-                <span>老客：把常送礼物变成一键再送入口</span>
-                <span>房间目标：把心愿、灯牌等任务转成当前动作</span>
-              </div>
-            </div>
-          </article>
-          <div class="outcome-side">
-            <article class="outcome-mini">
-              <div class="outcome-visual"><img src="assets/solution-light.png" alt="灯牌续亮推荐界面"></div>
-              <div><span class="card-label">状态关联</span><h3>灯牌 / 心愿进入首屏推荐</h3><p>系统把“今天最该完成的支持动作”直接转成推荐卡片，减少入口跳转和任务理解成本。</p></div>
-            </article>
-            <article class="outcome-mini">
-              <div class="outcome-visual"><img src="assets/solution-feedback-2.png" alt="送礼后轻反馈界面"></div>
-              <div><span class="card-label">送后确认</span><h3>送后反馈强化“被看见”</h3><p>送出后补一句“主播已收到支持”，让用户确认这次表达已经被接住。</p></div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="toc">
-      <div class="toc-inner">
-        <div class="section-title">
-          <div>
-            <h2>阅读路线：从结果回到推导</h2>
-            <div class="title-line"></div>
-          </div>
-          <span class="slash">Storyline</span>
-        </div>
-        <div class="toc-grid">
-          <a class="toc-item" href="#background"><span class="toc-no">01</span><span class="toc-name">背景机会</span><span class="toc-en">Context</span></a>
-          <a class="toc-item" href="#research"><span class="toc-no">02</span><span class="toc-name">现状拆解</span><span class="toc-en">Current State</span></a>
-          <a class="toc-item" href="#problem"><span class="toc-no">03</span><span class="toc-name">分层洞察</span><span class="toc-en">User Barriers</span></a>
-          <a class="toc-item" href="#goal"><span class="toc-no">04</span><span class="toc-name">目标边界</span><span class="toc-en">Goal</span></a>
-          <a class="toc-item" href="#layer"><span class="toc-no">05</span><span class="toc-name">推荐模型</span><span class="toc-en">Signals</span></a>
-          <a class="toc-item" href="#state-map"><span class="toc-no">06</span><span class="toc-name">状态映射</span><span class="toc-en">Mapping</span></a>
-          <a class="toc-item" href="#rule"><span class="toc-no">07</span><span class="toc-name">推荐规则</span><span class="toc-en">Priority</span></a>
-          <a class="toc-item" href="#strategy"><span class="toc-no">08</span><span class="toc-name">新客触发</span><span class="toc-en">Trigger</span></a>
-          <a class="toc-item" href="#solution"><span class="toc-no">09</span><span class="toc-name">首次破冰</span><span class="toc-en">Ice-breaking</span></a>
-          <a class="toc-item" href="#old-actions"><span class="toc-no">10</span><span class="toc-name">老客状态</span><span class="toc-en">Returning States</span></a>
-          <a class="toc-item" href="#showcase"><span class="toc-no">11</span><span class="toc-name">页面展示</span><span class="toc-en">Gallery</span></a>
-          <a class="toc-item" href="#feedback"><span class="toc-no">12</span><span class="toc-name">送后确认</span><span class="toc-en">Feedback</span></a>
-          <a class="toc-item" href="#validation"><span class="toc-no">13</span><span class="toc-name">价值验证</span><span class="toc-en">Metrics</span></a>
-          <a class="toc-item" href="#decision-path"><span class="toc-no">14</span><span class="toc-name">路径对比</span><span class="toc-en">Before / After</span></a>
-          <a class="toc-item" href="#review"><span class="toc-no">15</span><span class="toc-name">风险边界</span><span class="toc-en">Boundary</span></a>
-          <a class="toc-item" href="#reflection"><span class="toc-no">16</span><span class="toc-name">自我反思</span><span class="toc-en">Reflection</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="background">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">01</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>直播间送礼，是用户从观看走向表达支持的重要入口</h2><span class="en">Project Background</span></div>
-          <p class="lead">用户打开礼物面板的那一刻，动机已经从“继续看直播”切到“我要表达一点支持”。这个瞬间既有情绪，也有身份和氛围参与，所以推荐区不能只像商品货架一样排序。</p>
-          <div class="two-col">
-            <div>
-              <div class="story-grid" style="grid-template-columns: repeat(3, 1fr);">
-                <article class="story-card"><span class="label">表达心意</span><h3>用户想把喜欢说出来</h3><p>低价礼物承担轻量表达，让“我在看你”从心理活动变成主播和观众都能看到的动作。</p></article>
-                <article class="story-card"><span class="label">建立关系</span><h3>礼物连接粉丝身份</h3><p>灯牌、粉丝团、亲密值让送礼从一次消费延伸为持续关系中的一次维护。</p></article>
-                <article class="story-card"><span class="label">参与氛围</span><h3>礼物推动直播互动</h3><p>礼物会影响弹幕氛围和主播回应，用户送出的道具也承担一次进入现场的信号。</p></article>
-              </div>
-              <div class="story-card" style="margin-top:20px;min-height:170px;">
-                <span class="label">方案切入</span>
-<h3>优化重点从货架排列，升级为帮用户做好“送什么”的决策。</h3>
-                <p>所以我把重点放在打开面板后的第一屏：它必须解释此刻最值得做的一步，并让用户可以立刻完成。</p>
-              </div>
-            </div>
-            <div class="media-card">
-              <div class="media tall"><img src="assets/current-live-room.png" alt="抖音直播间线上现状"></div>
-              <div class="caption"><strong>送礼流程中的关键节点</strong><span>观看 → 打开礼物面板 → 选择礼物 → 送出反馈，礼物面板处在用户关系表达被触发的中心位置。</span></div>
-            </div>
-          </div>
-          <div class="conclusion">关键机会：推荐区可以承担“帮用户完成关系表达”的入口。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="research">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">02</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>线上能力已经完整，推荐区适合直接给出引导</h2><span class="en">Current State & Competitor Research</span></div>
-          <div class="summary-strip">功能已经具备，体验机会在于把能力组织成当前动作。</div>
-          <p class="lead">我把现有流程拆成四个时刻：送礼前看见任务、打开面板做选择、确认送出、送后获得反馈。推荐 Tab、粉丝团任务、主播心愿和送后反馈都存在，推荐区可以在用户打开面板时给出一个明确推荐。</p>
-          <div class="story-grid">
-            <article class="story-card"><span class="label">入口清晰</span><h3>底部礼物按钮常驻</h3><p>用户能随时打开面板，问题不在入口可见性，而在打开后的首屏判断。</p></article>
-            <article class="story-card"><span class="label">品类丰富</span><h3>多 Tab 已覆盖场景</h3><p>推荐、520、展馆、发现、玩法、粉丝团等内容完整，但首屏缺少个性化引导。</p></article>
-            <article class="story-card"><span class="label">赠送高效</span><h3>选中后可直接赠送</h3><p>支付步骤已经足够短，优化重点应该放在“选中前”的选择压力。</p></article>
-          </div>
-          <div class="insight-grid">
-            <article class="insight-card"><span class="card-label">推荐 Tab</span><h3>位置已经足够靠前</h3><p>它在打开面板后的第一屏，本来就是最适合展示推荐理由的位置。</p></article>
-            <article class="insight-card"><span class="card-label">粉丝任务</span><h3>目标明确，适合前置</h3><p>灯牌、亲密值有明确动作，适合在送礼决策发生时直接提示。</p></article>
-            <article class="insight-card"><span class="card-label">主播心愿</span><h3>回答了“送什么有用”</h3><p>心愿礼物天然具备场景价值，但它需要被前置到选择礼物的当下。</p></article>
-            <article class="insight-card"><span class="card-label">常送记录</span><h3>能减少重复决策</h3><p>老客知道怎么送，只是不想每次重新翻找曾经送过的礼物。</p></article>
-            <article class="insight-card"><span class="card-label">送后反馈</span><h3>情绪收尾可增强</h3><p>交易完成之后继续补充关系确认，用户能知道“这份支持被接收了”。</p></article>
-          </div>
-          <div class="evidence-row">
-            <div class="shot-tile"><img src="assets/current-send-gift.png" alt="线上送礼面板"><span class="tile-name">线上：推荐区偏货架</span></div>
-            <div class="shot-tile"><img src="assets/current-wish.png" alt="线上主播心愿"><span class="tile-name">线上：主播心愿入口</span></div>
-            <div class="shot-tile"><img src="assets/current-wish-no-panel.png" alt="心愿在面板里没有体现"><span class="tile-name">缺口：心愿与面板割裂</span></div>
-            <div class="shot-tile"><img src="assets/current-feedback.png" alt="线上送礼反馈"><span class="tile-name">线上：送后反馈被淹没</span></div>
-          </div>
-          <div class="section-title" style="margin-top:40px;"><div><h2>竞品 / 横向观察</h2><div class="title-line"></div></div><span class="slash">Competitive Scan</span></div>
-          <div class="story-grid">
-            <article class="story-card"><span class="label">低价礼物</span><h3>降低首送压力</h3><p>适合转化为“表达意图 + 低钻破冰礼物”。</p></article>
-            <article class="story-card"><span class="label">常用礼物</span><h3>提升复送效率</h3><p>适合转化为“你常送的 / 再送一个”。</p></article>
-            <article class="story-card"><span class="label">心愿进度</span><h3>明确支持目标</h3><p>适合转化为推荐区第一排心愿礼物。</p></article>
-          </div>
-          <div class="evidence-row">
-            <div class="shot-tile"><img src="assets/comp-huya.png" alt="虎牙礼物面板"><span class="tile-name">虎牙</span></div>
-            <div class="shot-tile"><img src="assets/comp-kuaishou.png" alt="快手礼物面板"><span class="tile-name">快手</span></div>
-            <div class="shot-tile"><img src="assets/comp-bilibili.png" alt="Bilibili礼物面板"><span class="tile-name">Bilibili</span></div>
-            <div class="shot-tile"><img src="assets/comp-yy.png" alt="YY礼物面板"><span class="tile-name">YY</span></div>
-          </div>
-          <div class="conclusion">设计方向：把已有能力翻译成“此刻最相关的一个送礼动作”。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="problem">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">03</span><span class="mark"></span></aside>
-        <div>
-<div class="slide-head layered-head"><h2>不同阶段用户的送礼决策阻力完全不同</h2><span class="en">Problem Definition</span><span class="script-note">Problem found</span></div>
-          <div class="summary-strip">同一个推荐货架，无法同时回答新客、老客和深度粉丝的不同问题。</div>
-          <p class="lead">线上推荐 Tab 已经很高效，但它默认所有用户都带着同一种问题进入面板。实际场景里，新客要解决“我该不该送、送什么不尴尬”，老客要解决“怎么最快再送”，深度粉丝要解决“当前送什么最有价值”。推荐区需要根据用户状态给出不同的推荐。</p>
-          <div class="diagnosis-list">
-<article class="diagnosis-step"><span class="step-no">01</span><div><h3>推荐理由缺失</h3><p>同样是“小心心”，对新客是破冰，对老客是复送，对粉丝团用户可能是续灯牌。推荐区如果不说明上下文，用户只能把它理解成普通商品陈列。</p></div></article>
-            <article class="diagnosis-step"><span class="step-no">02</span><div><h3>任务和送礼动作断开</h3><p>常送记录、灯牌任务、主播心愿都能影响用户当下的选择，但它们散落在不同入口里，用户要先理解任务，再回到面板找礼物。</p></div></article>
-<article class="diagnosis-step"><span class="step-no">03</span><div><h3>送后缺少关系确认</h3><p>送礼成功只说明交易完成，用户真正关心的是“我的支持有没有被主播和直播间看见”。反馈如果偏流水化，第一次表达的正反馈就会变弱。</p></div></article>
-          </div>
-          <div class="section-title" style="margin-top:40px;"><div><h2>新客的三个断点</h2><div class="title-line"></div></div><span class="slash">First Gift Barriers</span></div>
-          <div class="story-grid">
-            <article class="action-card"><span class="card-label">断点 01</span><h3>不知道什么时候送</h3><p>用户还停在观看状态，不确定自己是否已经“到了需要付费表达的程度”。礼物入口存在，但缺少基于兴趣状态的轻量引导。</p></article>
-            <article class="action-card"><span class="card-label">断点 02</span><h3>不知道第一次送什么</h3><p>面对几十个礼物，用户会担心价格不合适、表达太重或太轻。低价礼物虽然存在，但缺少“打招呼、表达喜欢、想被看到”的语义解释。</p></article>
-            <article class="action-card"><span class="card-label">断点 03</span><h3>不知道送完有没有被看见</h3><p>首送后如果只进入流水区，用户很难确认自己的心意已被接收。首次表达需要比普通交易更明确的正反馈。</p></article>
-          </div>
-          <div class="section-title" style="margin-top:40px;"><div><h2>老客 / 深度粉丝的核心问题</h2><div class="title-line"></div></div><span class="slash">Returning User Barriers</span></div>
-          <div class="story-grid">
-            <article class="action-card"><span class="card-label">送过但未入团</span><h3>想快速再送，不想重新找</h3><p>老客已经形成偏好，阻力从“选哪个”变成“为什么每次还要在货架里重新定位”。</p></article>
-            <article class="action-card"><span class="card-label">已入团 · 灯牌待点亮</span><h3>想维持身份，但入口割裂</h3><p>灯牌续亮是明确任务，却经常藏在粉丝团任务里。用户打开礼物面板时，应该直接看到最快完成方式。</p></article>
-            <article class="action-card"><span class="card-label">已入团 · 主播有心愿</span><h3>想支持当前目标，但不想盲选</h3><p>主播心愿已经回答了“送什么最有用”，但如果不进入推荐区，用户仍会在礼物网格里自行判断。</p></article>
-            <article class="action-card"><span class="card-label">已入团 · 无特殊状态</span><h3>想持续支持，但缺少进度感</h3><p>没有灯牌和心愿时，用户需要看到关系成长的长期目标，例如距下一级还差多少亲密值。</p></article>
-          </div>
-          <div class="conclusion">核心问题：推荐区没有根据用户阶段做分层推荐，缺少"理由 + 礼物 + 动作 + 反馈"的完整串联。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="goal">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">04</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>项目目标：把推荐 Tab 首屏改成一次明确的送礼决策位</h2><span class="en">Objective & Scope</span></div>
-          <div class="summary-strip">目标是让首屏同时完成判断、行动和验证。</div>
-          <p class="lead">我把目标拆成三层：用户快速理解推荐、动作一步完成、直播观看保持连续。三件事同时成立，推荐区才是有效增强。</p>
-          <div class="story-grid">
-            <article class="action-card"><span class="card-label">体验目标</span><h3>3 秒内看懂为什么推荐</h3><p>首屏文案直接说清推荐原因，把粉丝任务、心愿规则或历史记录翻译成一句可行动提示。</p></article>
-            <article class="action-card"><span class="card-label">业务目标</span><h3>提升关键送礼动作完成率</h3><p>分别验证首送、复送、灯牌续亮、心愿支持和关系成长，让每个模块的价值都能被看见。</p></article>
-            <article class="action-card"><span class="card-label">产品边界</span><h3>保留支付和礼物货架</h3><p>完整礼物宫格、分类浏览、支付确认都保留，推荐只负责把首屏主动作讲清楚。</p></article>
-          </div>
-          <div class="section-title" style="margin-top:34px;"><div><h2>设计边界</h2><div class="title-line"></div></div><span class="slash">Design Scope</span></div>
-          <div class="boundary">
-            <span>首屏完成主动作</span>
-            <span>保留完整礼物货架</span>
-            <span>支付保持一步确认</span>
-            <span>反馈避开主画面焦点</span>
-            <span>支持灰度和回滚</span>
-          </div>
-          <div class="conclusion">边界定清后，方案就收敛成一句话：增强首屏推荐，不重做整条送礼流程。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="layer">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">05</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>推荐区根据用户状态和直播间状态判断送礼动机</h2><span class="en">Signal Model</span></div>
-          <div class="summary-strip">推荐什么，取决于"用户是谁 × 他之前做过什么 × 主播此刻在干什么"。</div>
-          <p class="lead">推荐区要从静态变动态，先要有判断依据。我把可用信息分成三类信号，再把它们转化成推荐意图，避免“看起来很智能，但其实不知道为什么推”。</p>
-          <div class="signal-board">
-            <article class="signal-card"><span class="card-label">信号 01</span><h3>关系阶段</h3><p>判断用户和主播现在处在什么关系里：第一次破冰、已入团维护身份，还是稳定支持中的关系成长。</p></article>
-            <article class="signal-card"><span class="card-label">信号 02</span><h3>行为惯性</h3><p>看用户最近有没有常送礼物、偏好的价格带和稳定送礼频次，用历史行为减少重复决策。</p></article>
-            <article class="signal-card"><span class="card-label">信号 03</span><h3>房间目标</h3><p>看主播此刻有没有心愿、活动进度或团播任务，让推荐和直播间正在发生的事情挂钩。</p></article>
-          </div>
-          <div class="boundary">
-            <span>输入是状态信号</span>
-            <span>输出是推荐意图</span>
-            <span>样式跟随场景配置</span>
-            <span>允许多信号命中</span>
-            <span>需要优先级裁决</span>
-          </div>
-          <div class="conclusion">信号的目的：回答一个具体问题——现在这位用户最应该看到哪个送礼动作。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="state-map">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">06</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>状态映射：每种状态都对应一个清晰的首屏推荐</h2><span class="en">State To Recommendation Mapping</span></div>
-          <div class="summary-strip">5 种常见状态，每种对应一个首屏推荐。</div>
-          <p class="lead">为了让方案可落地，我没有做无限状态组合，而是把首屏推荐收敛到 5 个高频场景。每个场景都对应一个用户问题和一个推荐方案。</p>
-          <div class="state-map">
-            <article class="state-row"><div class="state">新客未送过</div><div class="arrow">→</div><div class="result">首次破冰推荐</div><div class="why">回答“第一次送什么合适”，用小额礼物完成关系破冰。</div></article>
-            <article class="state-row"><div class="state">老客未入团</div><div class="arrow">→</div><div class="result">常送礼物 / 一键再送</div><div class="why">复用历史偏好，减少重新翻找和重新决策的成本。</div></article>
-            <article class="state-row"><div class="state">已入团，灯牌待续亮</div><div class="arrow">→</div><div class="result">灯牌续亮推荐</div><div class="why">把今日身份维护前置到送礼决策位，把时效任务放到当下。</div></article>
-            <article class="state-row"><div class="state">已入团，主播有心愿</div><div class="arrow">→</div><div class="result">主播心愿礼物推荐</div><div class="why">让用户知道哪份礼物对主播当前目标最有帮助。</div></article>
-            <article class="state-row"><div class="state">已入团，无特殊状态</div><div class="arrow">→</div><div class="result">关系进度 + 常送</div><div class="why">用等级差值和常送角标，让持续支持有明确成长目标。</div></article>
-          </div>
-          <div class="conclusion">状态映射的作用，是把复杂的用户状态翻译成一句用户能看懂的话和一个能点的动作。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="rule">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">07</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>多个信号同时命中时，推荐区只保留一个主动作</h2><span class="en">Dynamic Recommendation Rule</span></div>
-<div class="summary-strip">同时命中多个状态时，推荐区要替用户做取舍。</div>
-          <p class="lead">例如一个老客既有常送记录，又已入团且今天灯牌待续亮，还遇到主播心愿。首屏不能把三个动作都推出来，而是按“关系关键性 + 时效性 + 当前场景价值”排序，只保留最该做的那个。</p>
-          <div class="priority-flow">
-            <article class="priority-node"><strong>P0</strong><h3>新客未送过</h3><p>首送是从观看到关系表达的第一步，优先帮用户完成破冰。</p></article>
-            <article class="priority-node"><strong>P1</strong><h3>灯牌待续亮</h3><p>灯牌有当天时效，错过后任务价值下降，所以优先放在首屏。</p></article>
-            <article class="priority-node"><strong>P2</strong><h3>主播有心愿</h3><p>心愿代表直播间当前目标，能让用户知道哪份支持最有用。</p></article>
-            <article class="priority-node"><strong>P3</strong><h3>老客未入团</h3><p>复用常送礼物降低选择成本，再引导用户形成更稳定关系。</p></article>
-            <article class="priority-node"><strong>P4</strong><h3>无特殊状态</h3><p>没有强任务时，用关系进度和常送选择作为温和兜底。</p></article>
-          </div>
-          <div class="conclusion">推荐规则的价值，是让首屏替用户减少选择，而不是把更多任务堆到他面前。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="strategy">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">08</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head layered-head"><h2>新客流程：兴趣信号触发，轻量引导首次表达</h2><span class="en">New User Trigger</span><span class="script-note">Start light</span></div>
-          <div class="summary-strip">不在用户一进房间时推礼物，而是在出现明确兴趣后，让礼物入口轻轻变化。</div>
-<p class="lead">新客的问题是还没形成付费表达的理由。所以入口触发要克制：只有用户已经表现出观看兴趣或互动意愿时，礼物入口才用气泡或胶囊态给一个轻提示。</p>
-          <div class="constraint-grid">
-            <article class="constraint-card"><span class="card-label">兴趣信号 01</span><h3>停留 30 秒以上</h3><p>说明用户已经产生基础观看兴趣，可以轻量提示“送个小心意”。</p></article>
-            <article class="constraint-card"><span class="card-label">兴趣信号 02</span><h3>连续点赞或互动</h3><p>用户已经从旁观进入互动状态，适合引导一次低压力表达。</p></article>
-            <article class="constraint-card"><span class="card-label">兴趣信号 03</span><h3>点击成员头像</h3><p>团播场景中，点击成员代表明确兴趣，可以提示送给具体成员。</p></article>
-            <article class="constraint-card"><span class="card-label">兴趣信号 04</span><h3>关注主播或成员</h3><p>关注代表初步关系建立，入口可短暂强化为“送心意”。</p></article>
-            <article class="constraint-card"><span class="card-label">弱触发</span><h3>礼物按钮旁气泡</h3><p>浮出“送个小心意~”，几秒后自动消失，不遮挡直播画面。</p></article>
-            <article class="constraint-card"><span class="card-label">强触发</span><h3>按钮短暂变为胶囊态</h3><p>礼物入口变为“送心意”，几秒后回落，仍然不是强运营弹窗。</p></article>
-          </div>
-<div class="conclusion">关键：把用户已经出现的兴趣，用最轻的入口变化引导到首次表达。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="solution">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">09</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head layered-head"><h2>新客流程：从兴趣出现到第一次表达完成</h2><span class="en">New User Gift Flow</span><span class="script-note">First gift</span></div>
-          <div class="summary-strip">新客页只讲一件事：用户第一次不知道怎么送，系统如何低压力地接住。</div>
-<p class="lead">用户已经停留、点赞、关注或点成员头像后，入口给一个轻提示。打开面板后，推荐区把"第一次送什么"翻译成表达意图，送出后再补一次"被看见"的反馈。</p>
-          <div class="mini-flow">
-            <span>兴趣信号出现</span><span class="flow-arrow">→</span><span>表达意图筛选</span><span class="flow-arrow">→</span><span>送后确认</span>
-          </div>
-          <div class="new-user-chain">
-            <article class="action-show-card featured">
-              <h3>01 兴趣触发</h3>
-              <div class="action-thumb"><img src="assets/solution-bubble-weak.png" alt="新客礼物入口弱触发"></div>
-              <p>用户停留、连续点赞、关注或点击成员后，礼物入口出现气泡或胶囊态，提示“送个小心意”。</p>
-              <div class="card-note"><span>控制点：不一进房间就推送，不做大弹窗。</span><span>需要截图：直播页弱气泡 / 强胶囊入口。</span></div>
-            </article>
-            <article class="action-show-card featured">
-              <h3>02 首送破冰</h3>
-              <div class="action-thumb"><img src="assets/solution-first-filter.png" alt="新客首送意图筛选"></div>
-              <p>推荐 Tab 首屏用“打个招呼、表达喜欢、想被看到、粉丝身份”替代纯礼物网格。</p>
-              <div class="card-note"><span>控制点：默认低钻礼物，不前置高价刺激。</span><span>需要截图：首次破冰推荐面板。</span></div>
-            </article>
-            <article class="action-show-card featured">
-              <h3>03 被看见反馈</h3>
-              <div class="action-thumb"><img src="assets/solution-feedback-2.png" alt="新客送礼成功反馈"></div>
-              <p>送出后用 2 到 3 秒轻反馈告诉用户“主播已收到支持”，把支付成功转成关系确认。</p>
-              <div class="card-note"><span>控制点：不遮挡直播画面，不强制下一步。</span><span>需要截图：送出礼物后的直播页反馈。</span></div>
-            </article>
-          </div>
-<div class="conclusion">新客流程的核心：把已经出现的兴趣，转化成一次小额、能被确认的表达。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="old-actions">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">10</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head layered-head"><h2>老客状态：不同关系阶段看到不同推荐动作</h2><span class="en">Returning User States</span><span class="script-note">Match state</span></div>
-          <div class="summary-strip">老客需要的是更匹配当前状态的送礼理由。</div>
-          <p class="lead">对送过礼或已入团的用户，推荐区首屏不再展示新客破冰内容，而是根据当前状态展示最该做的一个动作：复用常送、续亮灯牌、助力心愿，或看见关系进度。这样推荐区从“给你看礼物”变成“告诉你此刻支持哪里最有价值”。</p>
-          <div class="old-state-actions">
-            <article class="action-show-card">
-              <h3>常送再送</h3>
-              <div class="action-thumb"><img src="assets/solution-repeat.png" alt="老客常送礼物再送"></div>
-              <p>送过但未入团的用户，首屏露出常送礼物和一键再送，减少重复翻找。</p>
-              <div class="card-note"><span>适用状态：老客未入团，有稳定送礼记录。</span><span>需要截图：常送礼物推荐 banner。</span></div>
-            </article>
-            <article class="action-show-card">
-              <h3>灯牌点亮</h3>
-              <div class="action-thumb"><img src="assets/solution-light.png" alt="灯牌续亮推荐"></div>
-              <p>已入团且今日灯牌待点亮时，把粉丝任务转成推荐区一键动作。</p>
-              <div class="card-note"><span>适用状态：灯牌待续亮，任务有时效。</span><span>需要截图：灯牌待点亮推荐。</span></div>
-            </article>
-            <article class="action-show-card">
-              <h3>主播心愿</h3>
-              <div class="action-thumb"><img src="assets/solution-wish.png" alt="主播心愿礼物推荐"></div>
-              <p>主播设置心愿时，把心愿礼物前置，让用户知道送什么对当前目标最有用。</p>
-              <div class="card-note"><span>适用状态：主播有心愿或房间目标。</span><span>需要截图：心愿礼物推荐区。</span></div>
-            </article>
-            <article class="action-show-card">
-              <h3>关系进度</h3>
-              <div class="action-thumb"><img src="assets/solution-relation.png" alt="关系进度和常送角标"></div>
-              <p>无特殊任务时，展示等级差值和常送角标，让持续支持有长期目标。</p>
-              <div class="card-note"><span>适用状态：已入团，无强任务。</span><span>需要截图：关系进度 + 常送角标。</span></div>
-            </article>
-          </div>
-          <div class="conclusion">老客页的重点是“状态匹配”：复送讲效率，灯牌讲身份，心愿讲目标，关系进度讲长期经营。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="showcase">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">11</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head layered-head"><h2>5 类推荐状态，统一在推荐 Tab 首屏呈现</h2><span class="en">Interface Gallery</span><span class="script-note">Show the work</span></div>
-          <div class="showcase">
-            <article class="case-card">
-              <div class="case-visual"><img src="assets/solution-first-filter.png" alt="新客首送破冰推荐"></div>
-<div class="case-copy"><h3>页面 A｜新客首送破冰</h3><p>第一次打开面板的用户先看到"第一次送什么好"。表达意图帮助用户快速选择，小心心 1 钻承担小额破冰。</p><div class="design-intent"><strong>设计意图：</strong>新客不知道送什么、不知道多少钱合适——把选择题收窄到"你想表达什么"，再给出最便宜的选项，降低首次行动门槛。</div><div class="case-tags"><span>新客</span><span>表达意图</span><span>一键送出</span></div></div>
-            </article>
-            <article class="case-card">
-              <div class="case-visual"><img src="assets/solution-repeat.png" alt="老客常送一键再送"></div>
-<div class="case-copy"><h3>页面 B｜老客未入团 / 一键再送</h3><p>有送礼记录但尚未入团的用户，先看到"你常送的"。常送礼物变成当前快捷入口，减少重新查找礼物的成本。</p><div class="design-intent"><strong>设计意图：</strong>老客送过礼物，说明选择偏好已经形成。直接把上次的选择放出来，省掉翻找成本，一步到位完成复送。</div><div class="case-tags"><span>老客</span><span>常送</span><span>再送一个</span></div></div>
-            </article>
-            <article class="case-card">
-              <div class="case-visual"><img src="assets/solution-light.png" alt="灯牌续亮 banner"></div>
-              <div class="case-copy"><h3>页面 C｜灯牌续亮 banner</h3><p>已入团且今日灯牌待续亮时，推荐区给出一键续亮动作。身份维护从任务页前置到送礼决策位。</p><div class="design-intent"><strong>设计意图：</strong>灯牌续亮藏在粉丝团任务页里，用户经常忘。把"今天该续亮了"放到送礼面板首屏，用户打开就能看到、一步完成。</div><div class="case-tags"><span>粉丝团</span><span>灯牌</span><span>今日任务</span></div></div>
-            </article>
-            <article class="case-card">
-              <div class="case-visual"><img src="assets/solution-wish.png" alt="主播心愿礼物推荐"></div>
-              <div class="case-copy"><h3>页面 D｜主播心愿礼物推荐</h3><p>主播设置心愿时，心愿礼物进入推荐区第一排。用户能直接判断哪份礼物对主播当前目标最有帮助。</p><div class="design-intent"><strong>设计意图：</strong>主播有明确目标时，用户"送什么有用"的选项已经存在。把心愿礼物提到最前面，用户不用猜、直接送到位。</div><div class="case-tags"><span>心愿</span><span>目标明确</span><span>查看心愿</span></div></div>
-            </article>
-            <article class="case-card">
-              <div class="case-visual"><img src="assets/solution-relation.png" alt="关系进度常送角标"></div>
-              <div class="case-copy"><h3>页面 E｜关系进度 + 常送角标</h3><p>稳定粉丝状态下，推荐区展示等级进度和常送角标。持续送礼拥有清晰的关系成长目标。</p><div class="design-intent"><strong>设计意图：</strong>粉丝关系是长线陪伴，容易感觉"送了也没什么变化"。把等级进度露出来，让用户看到"离下一级还差多少"，持续支持有了可感知的回报。</div><div class="case-tags"><span>关系进度</span><span>亲密值</span><span>常送角标</span></div></div>
-            </article>
-            <article class="case-card">
-              <div class="case-visual"><video src="assets/new-user-break-ice-demo.mp4" muted controls playsinline poster="assets/solution-first-intent.png"></video></div>
-              <div class="case-copy"><h3>交互演示｜新客首次破冰</h3><p>用户先选择表达意图，再收敛到小额礼物。这个演示展示了从首次犹豫到一键完成支持的完整路径。</p><div class="design-intent"><strong>设计意图：</strong>完整交互路径演示"意图筛选 → 礼物收敛 → 一键送出"三步。验证用户不需要浏览全部礼物，就能完成第一次表达。</div><div class="case-tags"><span>意图筛选</span><span>小额</span><span>首送转化</span></div></div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="feedback">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">12</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>送礼后的关键反馈，是让用户确认“支持已被看见”</h2><span class="en">Post-gift Feedback Loop</span></div>
-<div class="summary-strip">送完最想知道一件事：主播看到了吗？</div>
-          <p class="lead">送礼成功后，用户要的是"我的心意被接收了"的确认感。我在直播画面上加了一层轻量浮层，2-3 秒出现又消失，不抢观看节奏。</p>
-          <div class="feedback-layout">
-            <div class="feedback-shots">
-              <div class="media-card"><div class="media"><img src="assets/solution-feedback-1.png" alt="送后反馈1"></div><div class="caption"><strong>方案 1</strong><span>首次支持成功 · 小心心 x1 已送达，点亮粉丝身份。</span></div></div>
-              <div class="media-card"><div class="media"><img src="assets/solution-feedback-2.png" alt="送后反馈2"></div><div class="caption"><strong>方案 2</strong><span>右下角气泡提示：已送出小心心 x1，主播已收到支持。</span></div></div>
-              <div class="media-card"><div class="media"><img src="assets/solution-feedback-3.png" alt="送后反馈3"></div><div class="caption"><strong>方案 3</strong><span>弱打扰浮层停留 2～3 秒，保留观看沉浸感。</span></div></div>
-            </div>
-            <div class="feedback-principles">
-              <span>提示“已送达 / 主播已收到”</span>
-              <span>反馈停留 2～3 秒</span>
-              <span>评论流继续自然滚动</span>
-              <span>直播画面结构稳定</span>
-              <span>粉丝身份动作入口偏弱</span>
-            </div>
-          </div>
-<div class="conclusion">反馈不再只说"支付成功"，而是告诉用户"主播收到了你的心意"。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="validation">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">13</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>验证：看每个断点有没有被解决</h2><span class="en">Project Impact & Metrics</span></div>
-          <div class="summary-strip">主指标看转化，辅助看效率，护栏指标保护观看体验和消费感受。</div>
-          <p class="lead">这类方案容易被误解成“更强地推礼物”，所以验证要拆细：入口是否在正确时机被打开、首送是否更容易完成、老客是否更快复送、任务型推荐是否提升完成率。同时必须观察面板退出率、负反馈率和观看时长，确保推荐没有打断直播体验。</p>
-          <div class="metric-grid">
-            <article class="metric-card"><h3>兴趣信号触发</h3><span class="metric-main">礼物面板打开率</span><div class="metric-tags"><span>气泡点击率</span><span>胶囊态点击率</span><span>触发后退出率</span></div></article>
-            <article class="metric-card"><h3>首送破冰推荐</h3><span class="metric-main">新客首送完成率</span><div class="metric-tags"><span>低钻礼物送出率</span><span>推荐区点击率</span><span>面板退出率</span></div></article>
-            <article class="metric-card"><h3>常送 / 一键再送</h3><span class="metric-main">复送完成率</span><div class="metric-tags"><span>送礼决策时长</span><span>常送点击率</span><span>取消支付率</span></div></article>
-            <article class="metric-card"><h3>灯牌续亮</h3><span class="metric-main">今日灯牌续亮率</span><div class="metric-tags"><span>粉丝任务完成率</span><span>粉丝团活跃率</span><span>误触率</span></div></article>
-            <article class="metric-card"><h3>主播心愿</h3><span class="metric-main">心愿礼物送出率</span><div class="metric-tags"><span>心愿进度贡献</span><span>查看心愿点击率</span><span>面板退出率</span></div></article>
-            <article class="metric-card"><h3>关系进度</h3><span class="metric-main">粉丝团等级成长</span><div class="metric-tags"><span>亲密值增长</span><span>常送点击率</span><span>观看时长</span></div></article>
-            <article class="metric-card"><h3>送后反馈</h3><span class="metric-main">二次送礼率</span><div class="metric-tags"><span>首送后停留时长</span><span>发言率</span><span>负反馈率</span></div></article>
-          </div>
-          <div class="conclusion">成功标准：送礼更容易完成，同时直播观看不被打断、低压力表达不被做成强运营感。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="decision-path">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">14</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>改版前后的用户决策路径对比</h2><span class="en">Before / After</span></div>
-          <div class="summary-strip">同一个用户，同一个场景，路径缩短了多少步？</div>
-          <p class="lead">左边是线上现状的送礼路径，右边是改版后的路径。对比的核心：用户少做了哪些事、少犹豫了哪些步。</p>
-          <div class="path-compare">
-            <div class="path-column path-before">
-              <h3 class="path-title">改版前</h3>
-              <ol class="path-steps">
-                <li><span class="step-label">打开面板</span><span class="step-desc">看到全量礼物货架</span></li>
-                <li><span class="step-label">浏览分类</span><span class="step-desc">按 Tab 翻找合适类目</span></li>
-                <li><span class="step-label">犹豫选择</span><span class="step-desc">不确定送什么合适、送多少</span></li>
-                <li><span class="step-label">放弃 / 随机点一个</span><span class="step-desc">选择成本过高，关闭面板或随意选择</span></li>
-              </ol>
-              <div class="path-result negative">选择压力大，首送转化低</div>
-            </div>
-            <div class="path-column path-after">
-              <h3 class="path-title">改版后</h3>
-              <ol class="path-steps">
-                <li><span class="step-label">打开面板</span><span class="step-desc">首屏看到和自己相关的推荐</span></li>
-                <li><span class="step-label">看到理由</span><span class="step-desc">"第一次送什么好" / "你常送的" / "灯牌该续亮了"</span></li>
-                <li><span class="step-label">一步送出</span><span class="step-desc">点击即完成，无需二次确认</span></li>
-              </ol>
-              <div class="path-result positive">决策路径缩短，完成率提升</div>
-            </div>
-          </div>
-          <div class="conclusion">用户的核心变化：打开面板后不再需要"自己想清楚送什么"，推荐区直接给出当前最合适的选项。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="review">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">15</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>风险控制与设计边界：轻量、不打扰、不重构原有流程</h2><span class="en">Risk Control & Boundary</span></div>
-          <div class="summary-strip">分层推荐要帮用户做决策，但不能让礼物面板变成强运营入口。</div>
-          <p class="lead">我把方案边界定在推荐 Tab 首屏内：不改变礼物面板整体结构，不新增支付流程，不影响其他 Tab。所有模块都可以灰度、关闭或回退到完整礼物货架。</p>
-          <div class="review-grid">
-            <article class="review-card"><span class="card-label">风险 01</span><h3>新客触发过度打扰</h3><p>仅在停留、点赞、关注、点击成员等兴趣信号出现后触发，不在用户一进房间时推送礼物。</p></article>
-            <article class="review-card"><span class="card-label">风险 02</span><h3>推荐区变复杂</h3><p>分层模块只占推荐 Tab 首屏，模块下方保留完整礼物货架，熟练用户仍能按原路径浏览。</p></article>
-            <article class="review-card"><span class="card-label">风险 03</span><h3>诱导消费感过强</h3><p>新客默认推荐小额礼物，用表达语义引导，不前置高价礼物或强促销话术。</p></article>
-            <article class="review-card"><span class="card-label">风险 04</span><h3>反馈打断观看</h3><p>送后反馈停留 2 到 3 秒自动消失，不做大弹窗，不要求用户手动关闭。</p></article>
-            <article class="review-card"><span class="card-label">风险 05</span><h3>与线上功能冲突</h3><p>不新增独立功能页，只复用推荐区、心愿、粉丝团任务和送后反馈这些既有能力。</p></article>
-            <article class="review-card"><span class="card-label">风险 06</span><h3>规则无法快速校准</h3><p>推荐模块和优先级均支持灰度配置，按数据调整灯牌、心愿、常送之间的排序。</p></article>
-          </div>
-          <div class="conclusion">这套方案的边界是"让推荐区更懂用户"，不是重做礼物面板，也不是把观看场景变成消费弹窗。</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide" id="reflection">
-      <div class="slide-inner">
-        <aside class="num-rail"><span class="no">16</span><span class="mark"></span></aside>
-        <div>
-          <div class="slide-head"><h2>做完这个项目，我重新理解了三件事</h2><span class="en">Reflection</span></div>
-          <div class="summary-strip">设计不是画界面，是在限制条件下做取舍。</div>
-          <div class="reflection-grid">
-            <article class="reflection-card">
-              <h3>推荐不等于多给选项</h3>
-              <p>一开始我的方案是给推荐区加更多内容卡片。后来发现用户的问题是"不知道为什么要选这个"。真正有效的推荐是减少选项、给出理由。</p>
-            </article>
-            <article class="reflection-card">
-              <h3>克制比创新更难</h3>
-              <p>我砍掉了好几个自己很喜欢的想法：全屏弹窗引导、送礼成就系统、社交排行榜。这些功能有趣，但会让礼物面板变重。做轻量改动、不碰原有结构，反而需要更多判断力。</p>
-            </article>
-            <article class="reflection-card">
-              <h3>用户分层要落到具体动作</h3>
-              <p>分层模型画出来容易，落到界面上难。"新客 / 老客 / 粉丝"是三种完全不同的决策情境，每种情境对应的首屏内容、文案语气、动作按钮都不一样。</p>
-            </article>
-          </div>
-          <div class="conclusion">下一次做推荐类产品，我会更早问自己一个问题：用户此刻需要的是"更多选择"还是"更少犹豫"。</div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        <span>Design by Douyin Live UX Case Study</span>
-        <span>让每一份心意，都能被看见</span>
-        <span>2026 · Experience Design</span>
-      </div>
-    </footer>
   </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
@@ -11005,6 +10721,129 @@
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(layoutPills);
   }
+
+  function normalizeInfiniteScroll(scroller) {
+    const metrics = scroller._loopMetrics;
+    if (!metrics || !metrics.cycle) return;
+
+    const min = metrics.start;
+    const max = metrics.start + metrics.cycle;
+    let next = scroller.scrollLeft;
+
+    if (next < min) {
+      next += metrics.cycle * Math.ceil((min - next) / metrics.cycle);
+    } else if (next >= max) {
+      next -= metrics.cycle * Math.floor((next - min) / metrics.cycle);
+    }
+
+    if (Math.abs(next - scroller.scrollLeft) > 0.5) {
+      scroller.scrollLeft = next;
+    }
+  }
+
+  function syncInfiniteScroller(scroller) {
+    const origin = scroller.querySelector('[data-loop-origin="true"]');
+    const after = scroller.querySelector('[data-loop-clone="after"]');
+    if (!origin || !after) return;
+
+    const styles = window.getComputedStyle(scroller);
+    const paddingLeft = parseFloat(styles.paddingLeft) || 0;
+    const start = origin.offsetLeft - paddingLeft;
+    const cycle = after.offsetLeft - origin.offsetLeft;
+
+    scroller._loopMetrics = { start, cycle };
+    if (scroller.dataset.loopPositioned !== 'true') {
+      scroller.scrollLeft = start;
+      scroller.dataset.loopPositioned = 'true';
+    }
+    normalizeInfiniteScroll(scroller);
+  }
+
+  function prepareInfiniteScroller(scroller) {
+    if (scroller.dataset.loopReady !== 'true') {
+      const originals = Array.from(scroller.children).filter((child) => child.classList.contains('ppt-comp-thumb'));
+      originals.forEach((item) => {
+        item.dataset.loopOrigin = 'true';
+        item.draggable = false;
+      });
+
+      const before = originals.map((item) => {
+        const clone = item.cloneNode(true);
+        clone.removeAttribute('data-loop-origin');
+        clone.dataset.loopClone = 'before';
+        clone.setAttribute('aria-hidden', 'true');
+        clone.draggable = false;
+        return clone;
+      });
+
+      const after = originals.map((item) => {
+        const clone = item.cloneNode(true);
+        clone.removeAttribute('data-loop-origin');
+        clone.dataset.loopClone = 'after';
+        clone.setAttribute('aria-hidden', 'true');
+        clone.draggable = false;
+        return clone;
+      });
+
+      scroller.prepend(...before);
+      scroller.append(...after);
+
+      let isDragging = false;
+      let startX = 0;
+      let startLeft = 0;
+      let ticking = false;
+
+      scroller.addEventListener('pointerdown', (event) => {
+        if (event.button && event.button !== 0) return;
+        isDragging = true;
+        startX = event.clientX;
+        startLeft = scroller.scrollLeft;
+        scroller.classList.add('is-dragging');
+        if (scroller.setPointerCapture) scroller.setPointerCapture(event.pointerId);
+      });
+
+      scroller.addEventListener('pointermove', (event) => {
+        if (!isDragging) return;
+        event.preventDefault();
+        scroller.scrollLeft = startLeft - (event.clientX - startX);
+        normalizeInfiniteScroll(scroller);
+      });
+
+      function endDrag(event) {
+        if (!isDragging) return;
+        isDragging = false;
+        scroller.classList.remove('is-dragging');
+        if (scroller.releasePointerCapture) scroller.releasePointerCapture(event.pointerId);
+      }
+
+      scroller.addEventListener('pointerup', endDrag);
+      scroller.addEventListener('pointercancel', endDrag);
+      scroller.addEventListener('lostpointercapture', endDrag);
+
+      scroller.addEventListener('scroll', () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(() => {
+          normalizeInfiniteScroll(scroller);
+          ticking = false;
+        });
+      });
+
+      scroller.dataset.loopReady = 'true';
+    }
+
+    syncInfiniteScroller(scroller);
+  }
+
+  function initInfiniteScrollers() {
+    document.querySelectorAll('.ppt-comp-scroll').forEach(prepareInfiniteScroller);
+  }
+
+  initInfiniteScrollers();
+  window.addEventListener('load', initInfiniteScrollers);
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.ppt-comp-scroll').forEach(syncInfiniteScroller);
+  });
 })();
 
 </script>
